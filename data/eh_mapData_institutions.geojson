@@ -1,0 +1,41 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Rachel Carson Center",
+				"acronym": "RCC",
+				"id": "rcc",
+				"type": "institution",
+				"website": "https://www.carsoncenter.uni-muenchen.de/index.html",
+				"country": "Germany",
+				"city": "Munich"
+			},
+			"geometry": {
+				"coordinates": [
+					11.577818918908065,
+					48.12971416003401
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Bra",
+				"id": "BRC",
+				"website": "www",
+				"country": "Brazil",
+				"city": "Lethem"
+			},
+			"geometry": {
+				"coordinates": [
+					-59.94230528107923,
+					3.3363401162367126
+				],
+				"type": "Point"
+			}
+		}
+	]
+}

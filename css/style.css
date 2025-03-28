@@ -1,0 +1,33 @@
+* {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#viz {
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+}
+
+#mapControls {
+	padding: 0 0 10px 0;
+	height: 4%;
+}
+
+#mapContainer {
+	display: grid;
+	grid-template-columns: 0.8fr 0.2fr;
+	column-gap: 10px;
+	height: 96%;
+}
+
+#map, #info {
+	height: 100%;
+}
