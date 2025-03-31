@@ -5,13 +5,11 @@
 		"id": "aseh",
 		"type": "regAssociations",
 		"website": "aseh.org",
-		"basicInfo": "Lorem ipsum",
+		"basicInfo": "The American Association of Environmental History, ASEH, was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called Environmental History. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
 		"countries": [
-			"USA",
-			"CAN",
-			"MEX"
+			"USA"
 		],
-		"color": "#088",
+		"color": "#4b7e5e",
 		"zoomCoords": [-98.48, 39.86],
 		"zoomLevel": 3
 	},
@@ -21,14 +19,12 @@
 		"id": "eseh",
 		"type": "regAssociations",
 		"website": "eseh.org",
-		"basicInfo": "Lorem ipsum",
+		"basicInfo": "Formed in 1999, the European Society for Environmental History, ESEH, is the second oldest society as well as the most diverse. As <a href='http://eseh.org/about-us/regions/'>this map shows</a>, besides most European countries, it includes South Africa, Australia, Turkey, Israel and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biannually since 2001, offers various prizes and is associated with the journals Environment and History and Arcadia.",
 		"countries": [
-			"FRA",
-			"ESP",
-			"ITA"
+			"PRT", "ESP", "FRA", "GBR", "IRL", "BEL", "CHE", "ITA", "NLD", "LUX", "DEU", "AUT", "SVN", "HRV", "POL", "CZE", "SVK", "HUN", "SRB", "MKD", "GRC", "ISL", "NOR", "SWE", "FIN", "EST", "LTU", "LVA", "UKR", "ROU", "TUR", "ISR", "RUS", "ZAF", "AUS"
 		],
 		"coordinates": [],
-		"color": "#808",
+		"color": "#e0182e",
 		"zoomCoords": [8.95, 51.1],
 		"zoomLevel": 2
 	},

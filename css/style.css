@@ -23,11 +23,15 @@ html, body {
 
 #mapContainer {
 	display: grid;
-	grid-template-columns: 0.8fr 0.2fr;
+	grid-template-columns: 1fr;
 	column-gap: 10px;
 	height: 96%;
 }
 
-#map, #info {
+#map {
 	height: 100%;
+}
+
+.mapPopup {
+	width: 360px;
 }

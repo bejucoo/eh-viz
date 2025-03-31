@@ -3,7 +3,7 @@ const ehMap = new maplibregl.Map({
 	container: "map",
 	style: "./resources/mapStyles/eh_baseMap.json",
 	center: [0, 0],
-	zoom: 2
+	zoom: 3
 });
 
 
@@ -53,6 +53,21 @@ const addAssociations = (data) => {
 			regAssociationsList.push(e.id);
 			clickableAssociations.push(e.id);
 			break;
+
+			// TO DO: Add geojson file with associations Name Info and Coords
+			/*ehMap.addLayer({
+				id: "regNames",
+				type: "symbol",
+				source: "countriesPolygons",
+				layout: {
+					"symbol-placement": "point",
+					"text-field": e.acronym,
+					"text-size": 40,
+					"text-justify": "center",
+					"text-allow-overlap": false
+				},
+				filter: ["any", ...e.countries.map(d => ["==", "adm0_a3", d])]
+			});*/
 
 		case "natAssociations":
 			ehMap.addLayer({
@@ -118,17 +133,24 @@ ehMap.on("load", () => {
 });
 
 
+// Change map projection
+ehMap.on('style.load', () => {
+	ehMap.setProjection({
+		type: 'globe',
+	});
+});
 
-// Get infobox elements
-const infoTitle = document.getElementById("infoTitle");
-const infoWebsite = document.getElementById("infoWebsite");
-const infoBasic = document.getElementById("infoBasic");
 
-// Click on polygons to change info and zoom
+
+// Click on polygons to change popup info and zoom
 ehMap.on("click", clickableAssociations, e => {
-	infoTitle.innerHTML = e.features[0].layer.metadata.name;
-	infoWebsite.innerHTML = e.features[0].layer.metadata.website;
-	infoBasic.innerHTML = e.features[0].layer.metadata.basic;
+	new maplibregl.Popup({
+		className: "mapPopup",
+		maxWidth: "none"
+	})
+	.setLngLat(e.lngLat)
+	.setHTML(`<h2>${e.features[0].layer.metadata.name}</h2><a href="http://${e.features[0].layer.metadata.website}">${e.features[0].layer.metadata.website}</a><p>${e.features[0].layer.metadata.basic}</p>`)
+	.addTo(ehMap);
 	
 	ehMap.flyTo({
 		center: e.features[0].layer.metadata.zoomCoords,
