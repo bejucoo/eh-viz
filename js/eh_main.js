@@ -1,9 +1,13 @@
+// Mapbox Toke, please change to go Live.
+mapboxgl.accessToken = 'pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg';
+
 // Create map
-const ehMap = new maplibregl.Map({
+const ehMap = new mapboxgl.Map({
 	container: "map",
 	style: "./resources/mapStyles/eh_baseMap.json",
 	center: [0, 0],
-	zoom: 3
+	zoom: 1.5,
+	projection: 'equalEarth'
 });
 
 
@@ -133,18 +137,10 @@ ehMap.on("load", () => {
 });
 
 
-// Change map projection
-ehMap.on('style.load', () => {
-	ehMap.setProjection({
-		type: 'globe',
-	});
-});
-
-
 
 // Click on polygons to change popup info and zoom
 ehMap.on("click", clickableAssociations, e => {
-	new maplibregl.Popup({
+	new mapboxgl.Popup({
 		className: "mapPopup",
 		maxWidth: "none"
 	})

@@ -10,7 +10,7 @@
 			"USA"
 		],
 		"color": "#4b7e5e",
-		"zoomCoords": [-98.48, 39.86],
+		"zoomCoords": [-98.5, 39.9],
 		"zoomLevel": 3
 	},
 	{
@@ -25,8 +25,38 @@
 		],
 		"coordinates": [],
 		"color": "#e0182e",
-		"zoomCoords": [8.95, 51.1],
+		"zoomCoords": [24, 6],
 		"zoomLevel": 2
+	},
+	{
+		"name": "Latin American and Caribbean Society for Environmental History",
+		"acronym": "SOLCHA",
+		"id": "solcha",
+		"type": "regAssociations",
+		"website": "solcha.org",
+		"basicInfo": "The Latin American and Caribbean Society for Environmental History, SOLCHA is the only society representing a region of the Global South. It was constituted in 2006, although the meeting of 2004 can be considered its start. It meets biannually and, since 2010, has a journal, <i>HALAC: Historia Ambiental Latinoamericana y Caribeña.</i>",
+		"countries": [
+			"MEX", "GTM", "BLZ", "SLV", "CUB", "JAM", "HTI", "DOM", "PRI", "HND", "NIC", "CRI", "PAN", "COL", "VEN", "TTO", "ECU", "BRA", "PER", "BOL", "ARG", "CHL", "PRY", "URY"
+		],
+		"coordinates": [],
+		"color": "#fed832",
+		"zoomCoords": [-48, -12],
+		"zoomLevel": 2.4
+	},
+	{
+		"name": "Asian Association for Environmental History",
+		"acronym": "AAEH",
+		"id": "aaeh",
+		"type": "regAssociations",
+		"website": "iceds.net/aaeh",
+		"basicInfo": "The Asian Association for Environmental History, AAEH, is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue</i>.",
+		"countries": [
+			"JPN"
+		],
+		"coordinates": [],
+		"color": "#1d95d0",
+		"zoomCoords": [96, 8],
+		"zoomLevel": 2.6
 	},
 	{
 		"name": "Canada",
