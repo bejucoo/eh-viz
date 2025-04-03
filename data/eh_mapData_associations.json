@@ -51,7 +51,7 @@
 		"website": "iceds.net/aaeh",
 		"basicInfo": "The Asian Association for Environmental History, AAEH, is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue</i>.",
 		"countries": [
-			"JPN"
+			"JPN", "KOR", "PRK", "CHN", "NPL", "IND", "BTN", "BGD", "MMR", "THA", "LAO", "KHM", "VNM", "TWN", "LKA", "MYS", "SGP", "IDN", "PHL", "PNG", "NZL", "TLS", "NCL", "FJI", "VUT", "SLB"
 		],
 		"coordinates": [],
 		"color": "#1d95d0",
@@ -59,17 +59,101 @@
 		"zoomLevel": 2.6
 	},
 	{
-		"name": "Canada",
+		"name": "Network in Canadian History & Environment",
 		"acronym": "NiCHE",
 		"id": "niche",
 		"type": "natAssociations",
 		"website": "niche-canada.org",
-		"basicInfo": "Lorem ipsum",
+		"basicInfo": "",
 		"countries": [
 			"CAN"
 		],
-		"color": "#080",
+		"color": "#5ea069",
 		"zoomCoords": [-98.26, 59.31],
 		"zoomLevel": 3
+	},
+	{
+		"name": "Australian & Aotearoa New Zealand Environmental History Network",
+		"acronym": "AANZEHN",
+		"id": "aanzehn",
+		"type": "natAssociations",
+		"website": "www.environmentalhistory-au-nz.org",
+		"basicInfo": "",
+		"countries": [
+			"AUS", "NZL"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [141.4, -27.6],
+		"zoomLevel": 3
+	},
+	{
+		"name": "Network for the Study of Environmental History of Turkey",
+		"acronym": "",
+		"id": "turkeyNat",
+		"type": "natAssociations",
+		"website": "www.envhistturkey.com",
+		"basicInfo": "",
+		"countries": [
+			"TUR"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [35.8, 38.3],
+		"zoomLevel": 4
+	},
+	{
+		"name": "Grupo de Trabalho História Ambiental, da Associação Nacional de História",
+		"acronym": "ANPUH",
+		"id": "anpuh",
+		"type": "natAssociations",
+		"website": "gthistoriaambiental.org.br",
+		"basicInfo": "",
+		"countries": [
+			"BRA"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [-51.3, -12.6],
+		"zoomLevel": 3
+	},
+	{
+		"name": "Red Portuguesa de Historia Ambiental",
+		"acronym": "REPORT(H)A",
+		"id": "reportha",
+		"type": "natAssociations",
+		"website": "www.reportha.org",
+		"basicInfo": "",
+		"countries": [
+			"PRT"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [-5.8, 39.7],
+		"zoomLevel": 4
+	},
+	{
+		"name": "Irish Environmental History Network",
+		"acronym": "",
+		"id": "irishNat",
+		"type": "natAssociations",
+		"website": "www.tcd.ie/tceh/iehn",
+		"basicInfo": "",
+		"countries": [
+			"IRL"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [-1.1, 52.8],
+		"zoomLevel": 4
+	},
+	{
+		"name": "Red Universitaria Española de Historia Ambiental",
+		"acronym": "RHUEDA",
+		"id": "rhueda",
+		"type": "natAssociations",
+		"website": "ruedha.hypotheses.org",
+		"basicInfo": "",
+		"countries": [
+			"ESP"
+		],
+		"color": "#5ea069",
+		"zoomCoords": [-1.1, 52.8],
+		"zoomLevel": 4
 	}
 ]

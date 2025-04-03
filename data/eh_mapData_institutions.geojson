@@ -8,8 +8,9 @@
 				"acronym": "RCC",
 				"id": "rcc",
 				"type": "institution",
-				"website": "https://www.carsoncenter.uni-muenchen.de/index.html",
-				"country": "Germany",
+				"website": "www.carsoncenter.uni-muenchen.de/index.html",
+				"basicInfo": "",
+				"countries": "Germany",
 				"city": "Munich"
 			},
 			"geometry": {
@@ -24,9 +25,12 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Bra",
+				"acronym": "",
 				"id": "BRC",
+				"type": "",
 				"website": "www",
-				"country": "Brazil",
+				"basicInfo": "",
+				"countries": "Brazil",
 				"city": "Lethem"
 			},
 			"geometry": {
