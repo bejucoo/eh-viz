@@ -3,7 +3,7 @@
 		"name": "American Association of Environmental History",
 		"acronym": "ASEH",
 		"id": "aseh",
-		"type": "regAssociations",
+		"type": "regional",
 		"website": "aseh.org",
 		"basicInfo": "The American Association of Environmental History, ASEH, was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called Environmental History. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
 		"countries": [
@@ -17,7 +17,7 @@
 		"name": "European Association of Environmental History",
 		"acronym": "ESEH",
 		"id": "eseh",
-		"type": "regAssociations",
+		"type": "regional",
 		"website": "eseh.org",
 		"basicInfo": "Formed in 1999, the European Society for Environmental History, ESEH, is the second oldest society as well as the most diverse. As <a href='http://eseh.org/about-us/regions/'>this map shows</a>, besides most European countries, it includes South Africa, Australia, Turkey, Israel and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biannually since 2001, offers various prizes and is associated with the journals Environment and History and Arcadia.",
 		"countries": [
@@ -32,7 +32,7 @@
 		"name": "Latin American and Caribbean Society for Environmental History",
 		"acronym": "SOLCHA",
 		"id": "solcha",
-		"type": "regAssociations",
+		"type": "regional",
 		"website": "solcha.org",
 		"basicInfo": "The Latin American and Caribbean Society for Environmental History, SOLCHA is the only society representing a region of the Global South. It was constituted in 2006, although the meeting of 2004 can be considered its start. It meets biannually and, since 2010, has a journal, <i>HALAC: Historia Ambiental Latinoamericana y Caribeña.</i>",
 		"countries": [
@@ -47,7 +47,7 @@
 		"name": "Asian Association for Environmental History",
 		"acronym": "AAEH",
 		"id": "aaeh",
-		"type": "regAssociations",
+		"type": "regional",
 		"website": "iceds.net/aaeh",
 		"basicInfo": "The Asian Association for Environmental History, AAEH, is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue</i>.",
 		"countries": [
@@ -62,7 +62,7 @@
 		"name": "Network in Canadian History & Environment",
 		"acronym": "NiCHE",
 		"id": "niche",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "niche-canada.org",
 		"basicInfo": "",
 		"countries": [
@@ -76,7 +76,7 @@
 		"name": "Australian & Aotearoa New Zealand Environmental History Network",
 		"acronym": "AANZEHN",
 		"id": "aanzehn",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "www.environmentalhistory-au-nz.org",
 		"basicInfo": "",
 		"countries": [
@@ -90,7 +90,7 @@
 		"name": "Network for the Study of Environmental History of Turkey",
 		"acronym": "",
 		"id": "turkeyNat",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "www.envhistturkey.com",
 		"basicInfo": "",
 		"countries": [
@@ -104,7 +104,7 @@
 		"name": "Grupo de Trabalho História Ambiental, da Associação Nacional de História",
 		"acronym": "ANPUH",
 		"id": "anpuh",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "gthistoriaambiental.org.br",
 		"basicInfo": "",
 		"countries": [
@@ -118,7 +118,7 @@
 		"name": "Red Portuguesa de Historia Ambiental",
 		"acronym": "REPORT(H)A",
 		"id": "reportha",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "www.reportha.org",
 		"basicInfo": "",
 		"countries": [
@@ -132,7 +132,7 @@
 		"name": "Irish Environmental History Network",
 		"acronym": "",
 		"id": "irishNat",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "www.tcd.ie/tceh/iehn",
 		"basicInfo": "",
 		"countries": [
@@ -146,14 +146,14 @@
 		"name": "Red Universitaria Española de Historia Ambiental",
 		"acronym": "RHUEDA",
 		"id": "rhueda",
-		"type": "natAssociations",
+		"type": "national",
 		"website": "ruedha.hypotheses.org",
 		"basicInfo": "",
 		"countries": [
 			"ESP"
 		],
 		"color": "#5ea069",
-		"zoomCoords": [-1.1, 52.8],
+		"zoomCoords": [-2.3, 38.3],
 		"zoomLevel": 4
 	}
 ]

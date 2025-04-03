@@ -4,7 +4,127 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"name": "Rachel Carson Center",
+				"name": "Forest History Society",
+				"acronym": "FHS",
+				"id": "fhs",
+				"type": "institution",
+				"website": "foresthistory.org",
+				"basicInfo": "",
+				"countries": "USA",
+				"city": "Durham"
+			},
+			"geometry": {
+				"coordinates": [
+					-78.88320794760281,
+					35.99431734296458
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Nelson Institute’s Center for Culture, History and Environment",
+				"acronym": "CHE",
+				"id": "che",
+				"type": "institution",
+				"website": "che.nelson.wisc.edu",
+				"basicInfo": "",
+				"countries": "USA",
+				"city": "University of Wisconsin, Madison"
+			},
+			"geometry": {
+				"coordinates": [
+					-89.40904344784276,
+					43.06965028227265
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Centre for Environmental Humanities",
+				"acronym": "",
+				"id": "ceh_uk",
+				"type": "institution",
+				"website": "environmentalhumanities.blogs.bristol.ac.uk/",
+				"basicInfo": "",
+				"countries": "UK",
+				"city": "University of Bristol, Bristol"
+			},
+			"geometry": {
+				"coordinates": [
+					-2.6022621215663833,
+					51.45804320523308
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Estonian Center for Environmental History",
+				"acronym": "KAJAK",
+				"id": "kajak",
+				"type": "institution",
+				"website": "www.carsoncenter.uni-muenchen.de/outreach/collaborations/kajak1/index.html",
+				"basicInfo": "",
+				"countries": "Estonia",
+				"city": "Tallinn University, Tallin"
+			},
+			"geometry": {
+				"coordinates": [
+					24.771154620258073,
+					59.43866222568991
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "KTH Environmental Humanities Laboratory",
+				"acronym": "",
+				"id": "kth",
+				"type": "institution",
+				"website": "www.kth.se/ehl/kth-environmental-humanities-laboratory-1.1225452",
+				"basicInfo": "",
+				"countries": "Sweden",
+				"city": "Stockholm"
+			},
+			"geometry": {
+				"coordinates": [
+					18.07120169604849,
+					59.3225482048729
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Observatorio de Humanidades Ambientales (Environmental humanities Observatory)",
+				"acronym": "",
+				"id": "oha_spain",
+				"type": "institution",
+				"website": "observatoriohumanidadesambientales.com/equipo/",
+				"basicInfo": "",
+				"countries": "Spain",
+				"city": "Granada"
+			},
+			"geometry": {
+				"coordinates": [
+					-3.600145457199659,
+					37.174246417002706
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Rachel Carson Center for Environment and Society",
 				"acronym": "RCC",
 				"id": "rcc",
 				"type": "institution",
@@ -15,8 +135,8 @@
 			},
 			"geometry": {
 				"coordinates": [
-					11.577818918908065,
-					48.12971416003401
+					11.575916043850299,
+					48.134599738599206
 				],
 				"type": "Point"
 			}
@@ -24,19 +144,59 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"name": "Bra",
+				"name": "Rradical Humanities Laboratory",
 				"acronym": "",
-				"id": "BRC",
-				"type": "",
-				"website": "www",
+				"id": "rhl_ireland",
+				"type": "institution",
+				"website": "www.ucc.ie/en/future-humanities/radical/",
 				"basicInfo": "",
-				"countries": "Brazil",
-				"city": "Lethem"
+				"countries": "Ireland",
+				"city": "University of Cork, Cork"
 			},
 			"geometry": {
 				"coordinates": [
-					-59.94230528107923,
-					3.3363401162367126
+					-8.49208053928524,
+					51.89347685009875
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Center for Environmental History",
+				"acronym": "ZUG",
+				"id": "zug",
+				"type": "institution",
+				"website": "boku.ac.at/en/zentrum-fuer-umweltgeschichte",
+				"basicInfo": "",
+				"countries": "Austria",
+				"city": "BOKU University, Vienna"
+			},
+			"geometry": {
+				"coordinates": [
+					16.33580243510943,
+					48.23535734752687
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Center for Environmental History",
+				"acronym": "",
+				"id": "ceh_australia",
+				"type": "institution",
+				"website": "history.cass.anu.edu.au/centres/ceh",
+				"basicInfo": "",
+				"countries": "Australia",
+				"city": "Australian National University, Canberra"
+			},
+			"geometry": {
+				"coordinates": [
+					149.11790793697753,
+					-35.281155658259614
 				],
 				"type": "Point"
 			}

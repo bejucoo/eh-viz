@@ -1,133 +1,76 @@
-// Mapbox Toke, please change to go Live.
-mapboxgl.accessToken = 'pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg';
+// Mapbox Token, please change to go live.
+mapboxgl.accessToken = "pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg";
 
-// Create map
+// Create map.
 const ehMap = new mapboxgl.Map({
 	container: "map",
 	style: "./resources/mapStyles/eh_baseMap.json",
 	center: [0, 0],
 	zoom: 1.5,
-	projection: 'equalEarth'
+	projection: "equalEarth"
 });
 
-
-
-// Get associations info
+// Get associations data.
 const fetchAssociations = async () => {
 	try {
-		const response = await fetch('./data/eh_mapData_associations.json')
-		const data = await response.json();
-		return data;
-	} catch(error) {
-		console.error(error);
+		const response = await fetch("./data/eh_mapData_associations.json");
+		return await response.json();
+	} catch (error) {
+		console.error("Error fetching associations data:", error);
 	}
-}
+};
 
-// Create arrays to store associations IDs
-let regAssociationsList = [];
-let natAssociationsList = [];
-let clickableAssociations = [];
+// Arrays for associations IDs.
+const associationLayers = {
+	regional: [],
+	national: [],
+	clickable: []
+};
 
-// Function to add associations layers to the map
+// Aassociations layers.
 const addAssociations = (data) => {
-	data.forEach(e => {
-		switch(e.type) {
-		// Regional
-		case "regAssociations":
-			ehMap.addLayer({
-				id: e.id,
-				type: "fill",
-				source: "countriesPolygons",
-				layout: {
-					"visibility": "visible"
-				},
-				paint: {
-					"fill-color": e.color,
-					"fill-opacity": 0.5
-				},
-				filter: ["any", ...e.countries.map(d => ["==", "adm0_a3", d])],
-				metadata: {
-					"name": e.name,
-					"acronym": e.acronym,
-					"website": e.website,
-					"basic": e.basicInfo,
-					"zoomCoords": e.zoomCoords,
-					"zoomLevel": e.zoomLevel,
-					"ehType": e.type
-				}
-			});
-			regAssociationsList.push(e.id);
-			clickableAssociations.push(e.id);
-			break;
+	data.forEach(({ id, type, color, countries, ...metadata }) => {
+		const isRegional = type === "regional";
+		const visibility = isRegional ? "visible" : "none";
 
-			// Regional Labels
-			// TO DO: Add geojson file with associations Name Info and Coords
-			/*ehMap.addLayer({
-				id: "regNames",
-				type: "symbol",
-				source: "countriesPolygons",
-				layout: {
-					"symbol-placement": "point",
-					"text-field": e.acronym,
-					"text-size": 40,
-					"text-justify": "center",
-					"text-allow-overlap": false
-				},
-				filter: ["any", ...e.countries.map(d => ["==", "adm0_a3", d])]
-			});*/
+		ehMap.addLayer({
+			id,
+			type: "fill",
+			source: "countriesPolygons",
+			layout: { visibility },
+			paint: {
+				"fill-color": color,
+				"fill-opacity": 0.5
+			},
+			filter: [
+				"any",
+				...countries.map((country) => ["==", "adm0_a3", country])
+			],
+			metadata
+		});
 
-		// National
-		case "natAssociations":
-			ehMap.addLayer({
-				id: e.id,
-				type: "fill",
-				source: "countriesPolygons",
-				layout: {
-					"visibility": "none"
-				},
-				paint: {
-					"fill-color": e.color,
-					"fill-opacity": 0.5
-				},
-				filter: ["any", ...e.countries.map(d => ["==", "adm0_a3", d])],
-				metadata: {
-					"name": e.name,
-					"acronym": e.acronym,
-					"website": e.website,
-					"basic": e.basicInfo,
-					"zoomCoords": e.zoomCoords,
-					"zoomLevel": e.zoomLevel,
-					"ehType": e.type
-				}
-			});
-			natAssociationsList.push(e.id);
-			clickableAssociations.push(e.id);
-			break;
-		}
+		associationLayers[isRegional ? "regional" : "national"].push(id);
+		associationLayers.clickable.push(id);
 	});
-}
+};
 
-// Function to add institutions layer to the map
+// Institutions layer.
 const addInstitutions = () => {
 	ehMap.addLayer({
 		id: "institutions",
 		type: "circle",
 		source: "institutionsPoints",
-		layout: {
-			"visibility": "none"
-		},
+		layout: { visibility: "none" },
 		paint: {
 			"circle-radius": 8,
 			"circle-color": "#685ea0"
 		}
 	});
-	clickableAssociations.push("institutions");
-}
+	associationLayers.clickable.push("institutions");
+};
 
-
-
-// Add file sources and layers to the map
-ehMap.on("load", () => {
+// Load sources and add layers.
+ehMap.on("load", async () => {
 	ehMap.addSource("countriesPolygons", {
 		type: "geojson",
 		data: "./resources/countriesPolygons/countriesMQ.geojson"
@@ -138,37 +81,34 @@ ehMap.on("load", () => {
 		data: "./data/eh_mapData_institutions.geojson"
 	});
 
-	fetchAssociations().then(data => addAssociations(data));
+	const associations = await fetchAssociations();
+	addAssociations(associations);
 	addInstitutions();
 });
 
+// Change cursor on hover.
+const togglePointer = (cursorType) => () => {
+	ehMap.getCanvas().style.cursor = cursorType;
+};
 
+ehMap.on("mouseenter", associationLayers.clickable, togglePointer("pointer"));
+ehMap.on("mouseleave", associationLayers.clickable, togglePointer(""));
 
-// On hover change cursor to pointer
-ehMap.on('mouseenter', clickableAssociations, () => {
-	ehMap.getCanvas().style.cursor = 'pointer'
-})
-ehMap.on('mouseleave', clickableAssociations, () => {
-	ehMap.getCanvas().style.cursor = ''
-})
+// Open popup and change position on click.
+ehMap.on("click", associationLayers.clickable, (e) => {
+	const feature = e.features[0];
+	const isInstitution = feature.layer.id === "institutions";
+	const metadata = isInstitution
+	? feature.properties
+	: feature.layer.metadata;
 
-
-
-// Click on polygons to change popup info and zoom
-ehMap.on("click", clickableAssociations, e => {
-	let popupInfo = "";
-	let popupCoords = [];
-	let popupZoom = 0;
-
-	if(e.features[0].layer.id == "institutions"){
-		popupInfo = `<h2>${e.features[0].properties.name}</h2><h3>${e.features[0].properties.city}, ${e.features[0].properties.countries}</h3><a href="http://${e.features[0].properties.website}">${e.features[0].properties.website}</a>`;
-		popupCoords = e.features[0].geometry.coordinates;
-		popupZoom = 3;
-	} else {
-		popupInfo = `<h2>${e.features[0].layer.metadata.name}</h2><h3>${e.features[0].layer.metadata.acronym}</h3><a href="http://${e.features[0].layer.metadata.website}">${e.features[0].layer.metadata.website}</a><p>${e.features[0].layer.metadata.basic}</p>`;
-		popupCoords = e.features[0].layer.metadata.zoomCoords;
-		popupZoom = e.features[0].layer.metadata.zoomLevel;
-	}
+	const popupInfo = `
+		<h2>${metadata.name}</h2>
+		${metadata.acronym === "" ? "" : `<h3>${metadata.acronym}</h3>`}
+		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
+		<a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a>
+		<p>${metadata.basicInfo}</p>
+	`;
 
 	new mapboxgl.Popup({
 		className: "mapPopup",
@@ -177,30 +117,20 @@ ehMap.on("click", clickableAssociations, e => {
 	.setLngLat(e.lngLat)
 	.setHTML(popupInfo)
 	.addTo(ehMap);
-	
+
 	ehMap.flyTo({
-		center: popupCoords,
-		zoom: popupZoom,
+		center: metadata.zoomCoords || e.lngLat,
+		zoom: metadata.zoomLevel || 3,
 		speed: 0.5
 	});
 });
 
-
-
-// Get toggle buttons
-const toggleButtons = document.querySelectorAll(".layerToggle");
-
-// Function to change the visibility of multiple layers
-const toggleArrayVisibility = (layersArray, state) => {
-	layersArray.forEach(layer => {
-		ehMap.setLayoutProperty(layer, "visibility", state);
-	});
-}
-
-// Clicking buttons change visibility of layers and zoom
-toggleButtons.forEach(elm => {
-	elm.addEventListener("click", e => {
-		document.querySelectorAll('.mapboxgl-popup').forEach(popup => popup.remove());
+// Change visibility on button click.
+document.querySelectorAll(".layerToggle").forEach((button) => {
+	button.addEventListener("click", () => {
+		document
+		.querySelectorAll(".mapboxgl-popup")
+		.forEach((popup) => popup.remove());
 
 		ehMap.flyTo({
 			center: [0, 0],
@@ -208,22 +138,22 @@ toggleButtons.forEach(elm => {
 			speed: 1
 		});
 
-		switch(e.srcElement.id) {
-		case "regAssociations":
-			toggleArrayVisibility(regAssociationsList, "visible");
-			toggleArrayVisibility(natAssociationsList, "none");
-			ehMap.setLayoutProperty("institutions", "visibility", "none");
-			break;
-		case "natAssociations":
-			toggleArrayVisibility(regAssociationsList, "none");
-			toggleArrayVisibility(natAssociationsList, "visible");
-			ehMap.setLayoutProperty("institutions", "visibility", "none");
-			break;
-		case "institutions":
-			toggleArrayVisibility(natAssociationsList, "none");
-			toggleArrayVisibility(regAssociationsList, "none");
-			ehMap.setLayoutProperty("institutions", "visibility", "visible");
-			break;
-		}
+		const visibilitySettings = {
+			regional_associations: {regional: "visible", national: "none", institutions: "none"},
+			national_associations: {regional: "none", national: "visible", institutions: "none"},
+			institutions: {regional: "none", national: "none", institutions: "visible"},
+		};
+
+		const state = visibilitySettings[button.id];
+
+		associationLayers.regional.forEach(id => {
+			ehMap.setLayoutProperty(id, "visibility", state.regional);
+		});
+
+		associationLayers.national.forEach(id => {
+			ehMap.setLayoutProperty(id, "visibility", state.national);
+		});
+
+		ehMap.setLayoutProperty("institutions", "visibility", state.institutions);
 	});
 });
