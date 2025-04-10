@@ -1,0 +1,69 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "American Association of Environmental History",
+				"acronym": "ASEH",
+				"id": "aseh_title",
+				"category": "major"
+			},
+			"geometry": {
+				"coordinates": [
+					-98.46018016749862,
+					39.52275215207686
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Latin American and Caribbean Society for Environmental History",
+				"acronym": "SOLCHA",
+				"id": "solcha_title",
+				"category": "major"
+			},
+			"geometry": {
+				"coordinates": [
+					-70.15202686541964,
+					-4.265804419383542
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "European Association of Environmental History",
+				"acronym": "ESEH",
+				"id": "eseh_title",
+				"category": "major"
+			},
+			"geometry": {
+				"coordinates": [
+					30.24060412942714,
+					51.730994731949096
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Asian Association for Environmental History",
+				"acronym": "AAEH",
+				"id": "aaeh_title",
+				"category": "major"
+			},
+			"geometry": {
+				"coordinates": [
+					121.51281403331177,
+					31.192748293637678
+				],
+				"type": "Point"
+			}
+		}
+	]
+}

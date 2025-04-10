@@ -4,7 +4,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuN
 // Create map.
 const ehMap = new mapboxgl.Map({
 	container: "map",
-	style: "./resources/mapStyles/eh_baseMap.json",
+	style: "mapbox://styles/bejuco/cm9bldki9001a01s34n1hbpig",
 	center: [0, 0],
 	zoom: 1.5,
 	projection: "equalEarth"
@@ -22,16 +22,16 @@ const fetchAssociations = async () => {
 
 // Arrays for associations IDs.
 const associationLayers = {
-	regional: [],
+	major: [],
 	national: [],
 	clickable: []
 };
 
 // Aassociations layers.
 const addAssociations = (data) => {
-	data.forEach(({ id, type, color, countries, ...metadata }) => {
-		const isRegional = type === "regional";
-		const visibility = isRegional ? "visible" : "none";
+	data.forEach(({id, color, countries, ...metadata}) => {
+		const isMajor = metadata.category === "major";
+		const visibility = isMajor ? "visible" : "none";
 
 		ehMap.addLayer({
 			id,
@@ -49,9 +49,26 @@ const addAssociations = (data) => {
 			metadata
 		});
 
-		associationLayers[isRegional ? "regional" : "national"].push(id);
+		associationLayers[isMajor ? "major" : "national"].push(id);
 		associationLayers.clickable.push(id);
 	});
+};
+
+// Association titles layer.
+const addAssociationsLabels = () => {
+	ehMap.addLayer({
+		id: "associations_labels",
+		type: "symbol",
+		source: "associationsLabels",
+		layout: {
+			visibility: "visible",
+			"text-field": ['get', 'acronym'],
+			"text-font": ['Fjalla One Regular'],
+			"text-size": 32,
+			"text-anchor": 'center'
+		}
+	});
+	associationLayers.clickable.push("institutions");
 };
 
 // Institutions layer.
@@ -62,7 +79,7 @@ const addInstitutions = () => {
 		source: "institutionsPoints",
 		layout: { visibility: "none" },
 		paint: {
-			"circle-radius": 8,
+			"circle-radius": 6,
 			"circle-color": "#685ea0"
 		}
 	});
@@ -76,6 +93,11 @@ ehMap.on("load", async () => {
 		data: "./resources/countriesPolygons/countriesMQ.geojson"
 	});
 
+	ehMap.addSource("associationsLabels", {
+		type: "geojson",
+		data: "./data/eh_mapData_associationsLabels.geojson"
+	});
+
 	ehMap.addSource("institutionsPoints", {
 		type: "geojson",
 		data: "./data/eh_mapData_institutions.geojson"
@@ -83,6 +105,7 @@ ehMap.on("load", async () => {
 
 	const associations = await fetchAssociations();
 	addAssociations(associations);
+	addAssociationsLabels();
 	addInstitutions();
 });
 
@@ -98,16 +121,15 @@ ehMap.on("mouseleave", associationLayers.clickable, togglePointer(""));
 ehMap.on("click", associationLayers.clickable, (e) => {
 	const feature = e.features[0];
 	const isInstitution = feature.layer.id === "institutions";
-	const metadata = isInstitution
-	? feature.properties
-	: feature.layer.metadata;
+	const metadata = isInstitution ? feature.properties	: feature.layer.metadata;
+	const isNational = metadata.category === "national";
 
 	const popupInfo = `
-		<h2>${metadata.name}</h2>
-		${metadata.acronym === "" ? "" : `<h3>${metadata.acronym}</h3>`}
-		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
-		<a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a>
+		${isNational || isInstitution ? `<h2>${metadata.name}</h2>` : ""}
+		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
 		<p>${metadata.basicInfo}</p>
+		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
+		<p>Website: <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></p>
 	`;
 
 	new mapboxgl.Popup({
@@ -117,12 +139,6 @@ ehMap.on("click", associationLayers.clickable, (e) => {
 	.setLngLat(e.lngLat)
 	.setHTML(popupInfo)
 	.addTo(ehMap);
-
-	ehMap.flyTo({
-		center: metadata.zoomCoords || e.lngLat,
-		zoom: metadata.zoomLevel || 3,
-		speed: 0.5
-	});
 });
 
 // Change visibility on button click.
@@ -139,16 +155,18 @@ document.querySelectorAll(".layerToggle").forEach((button) => {
 		});
 
 		const visibilitySettings = {
-			regional_associations: {regional: "visible", national: "none", institutions: "none"},
-			national_associations: {regional: "none", national: "visible", institutions: "none"},
-			institutions: {regional: "none", national: "none", institutions: "visible"},
+			major_associations: {major: "visible", majorLabels: "visible", national: "none", institutions: "none"},
+			national_associations: {major: "none", majorLabels: "none", national: "visible", institutions: "none"},
+			institutions: {major: "none", majorLabels: "none", national: "none", institutions: "visible"},
 		};
 
 		const state = visibilitySettings[button.id];
 
-		associationLayers.regional.forEach(id => {
-			ehMap.setLayoutProperty(id, "visibility", state.regional);
+		associationLayers.major.forEach(id => {
+			ehMap.setLayoutProperty(id, "visibility", state.major);
 		});
+
+		ehMap.setLayoutProperty("associations_labels", "visibility", state.majorLabels);
 
 		associationLayers.national.forEach(id => {
 			ehMap.setLayoutProperty(id, "visibility", state.national);

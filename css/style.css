@@ -32,20 +32,20 @@ html, body {
 /* MAP & LIST */
 #mapContainer {
 	display: grid;
-	grid-template-columns: 0.8fr 0.2fr;
+	grid-template-columns: 1fr;
 	column-gap: 10px;
 	height: 100%;
 }
 
-#map, #infoList {
+#map, #sidebar {
 	height: 100%;
 	border: 1px solid grey;
 	border-radius: 20px;
 }
 
-#infoList {
+.sidebar_hidden {
+	display: none;
 }
-
 
 /* POPUPS */
 .mapPopup {
