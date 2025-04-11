@@ -37,13 +37,20 @@ html, body {
 	height: 100%;
 }
 
+.hasSidebar {
+	grid-template-columns: 0.8fr 0.2fr !important;
+}
+
 #map, #sidebar {
 	height: 100%;
 	border: 1px solid grey;
-	border-radius: 20px;
 }
 
-.sidebar_hidden {
+#sidebar {
+	padding: 5%;
+}
+
+.isHidden {
 	display: none;
 }
 
@@ -87,10 +94,46 @@ html, body {
     font-style: italic;
 }
 
+
+/* TEXT ELEMENTS"*/
 h1, h2, h3 {
 	font-family: FjallaOne;
 }
 
 button, a, p {
 	font-family: LibreFranklin;
+}
+
+
+a:link {
+	transition: color .2s linear;
+	color: #51C2C8;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #51C2C8;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+a.institutionListLink:link {
+	transition: color .2s linear;
+	color: #000000;
+	text-decoration: none;
+}
+
+a.institutionListLink:visited {
+	color: #000000;
+	text-decoration: none;
+	text-weight: bold;
+}
+
+a.institutionListLink:hover {
+	color: #51C2C8;
+	text-decoration: underline;
 }

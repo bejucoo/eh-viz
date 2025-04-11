@@ -86,6 +86,54 @@ const addInstitutions = () => {
 	associationLayers.clickable.push("institutions");
 };
 
+// Institutions Sidebar List
+const addInstitutionsList = () => {
+	const listElement = document.getElementById("institutionsList");
+	const featuresInfo = [];
+	const features = ehMap.queryRenderedFeatures({layers: ['institutions']});
+
+	features.forEach(feature => {
+		const coordinates = feature.geometry.coordinates;
+		const props = feature.properties;
+		featuresInfo.push([props, coordinates]);
+		featuresInfo.sort((a, b) => a[0].name.localeCompare(b[0].name));
+	});
+
+	featuresInfo.forEach(e => {
+		const li = document.createElement('li');
+		li.className = "institutionListElm"
+		
+		let a = document.createElement('a');
+		a.innerHTML = e[0].name;
+		a.href = "#";
+		a.className = "institutionListLink"
+
+		a.addEventListener("click", (link) => {
+			link.preventDefault();
+			document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
+
+			const popupInfo = `
+				<h2>${e[0].name}</h2>
+				<p>${e[0].basicInfo}</p>
+				${e[0].city ? `<h3>${e[0].city + ", " + e[0].countries}</h3>` : ""}
+				<p><b>Website: <a href="http://${e[0].website}" target="_blank" rel="noopener noreferrer">${e[0].website}</a></b></p>
+			`;
+
+			new mapboxgl.Popup({
+				className: "mapPopup",
+				maxWidth: "none"
+			})
+			.setLngLat(e[1])
+			.setHTML(popupInfo)
+			.addTo(ehMap);
+		});
+
+		li.appendChild(a);		
+		listElement.appendChild(li);
+	})
+};
+
+
 // Load sources and add layers.
 ehMap.on("load", async () => {
 	ehMap.addSource("countriesPolygons", {
@@ -109,6 +157,7 @@ ehMap.on("load", async () => {
 	addInstitutions();
 });
 
+
 // Change cursor on hover.
 const togglePointer = (cursorType) => () => {
 	ehMap.getCanvas().style.cursor = cursorType;
@@ -117,7 +166,32 @@ const togglePointer = (cursorType) => () => {
 ehMap.on("mouseenter", associationLayers.clickable, togglePointer("pointer"));
 ehMap.on("mouseleave", associationLayers.clickable, togglePointer(""));
 
-// Open popup and change position on click.
+
+// Toggle sidebar.
+let sidebarVisible = false;
+const toggleSidebarOn = () => {
+	if (!sidebarVisible) {
+		document.getElementById("mapContainer").classList.add("hasSidebar");
+		document.getElementById("sidebar").classList.remove("isHidden");
+		sidebarVisible = true;
+	}
+
+	ehMap.resize();
+}
+
+const toggleSidebarOff = () => {
+	if (sidebarVisible) {
+		document.getElementById("mapContainer").classList.remove("hasSidebar");
+		document.getElementById("sidebar").classList.add("isHidden");
+		document.querySelectorAll(".institutionListElm").forEach(e => e.remove());
+		sidebarVisible = false;
+	}
+
+	ehMap.resize();
+}
+
+
+// Open popup on layer click.
 ehMap.on("click", associationLayers.clickable, (e) => {
 	const feature = e.features[0];
 	const isInstitution = feature.layer.id === "institutions";
@@ -129,7 +203,7 @@ ehMap.on("click", associationLayers.clickable, (e) => {
 		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
 		<p>${metadata.basicInfo}</p>
 		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
-		<p>Website: <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></p>
+		<p><b>Website:  <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></b></p>
 	`;
 
 	new mapboxgl.Popup({
@@ -141,12 +215,25 @@ ehMap.on("click", associationLayers.clickable, (e) => {
 	.addTo(ehMap);
 });
 
+
+// Add Institutions list if layer has loaded when visible.
+ehMap.on('sourcedata', (e) => {
+	if (e.sourceId === "institutionsPoints" && e.isSourceLoaded === true && !e.sourceDataType) {
+		addInstitutionsList();
+	}
+});
+
+
 // Change visibility on button click.
 document.querySelectorAll(".layerToggle").forEach((button) => {
 	button.addEventListener("click", () => {
-		document
-		.querySelectorAll(".mapboxgl-popup")
-		.forEach((popup) => popup.remove());
+		if (button.id === "institutions") { 
+			toggleSidebarOn();
+		} else {
+			toggleSidebarOff();
+		}
+
+		document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
 
 		ehMap.flyTo({
 			center: [0, 0],
