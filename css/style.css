@@ -52,10 +52,6 @@ html, body {
 	overflow: scroll;
 }
 
-#dataList {
-	max-height: 100%;
-}
-
 .isHidden {
 	display: none;
 }
