@@ -37,8 +37,8 @@ html, body {
 	height: 100%;
 }
 
-.hasSidebar {
-	grid-template-columns: 0.8fr 0.2fr !important;
+#mapContainer.hasSidebar {
+	grid-template-columns: 0.8fr 0.2fr;
 }
 
 #map, #sidebar {
@@ -54,44 +54,88 @@ html, body {
 	display: none;
 }
 
+
 /* POPUPS */
 .mapPopup {
 	width: 360px;
 }
 
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+	border-bottom-color: black !important;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+	border-top-color: black !important;
+}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+	border-right-color: black !important;
+}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+	border-left-color: black !important;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+	border-top-color: black !important;
+}
+
+.mapboxgl-popup-content {
+	border: solid 1px #A0A0A0;
+}
+
+
+
+/* RESPONSIVE */
+/* TABLE AND MOBILE */
+@media only screen and (max-width: 1024px) {
+	#mapContainer.hasSidebar {
+		grid-template-columns: unset;
+		grid-template-rows: 0.5fr 0.5fr;
+		row-gap: 10px;
+	}
+
+	#sidebar {
+		max-height: 100%;
+		overflow: scroll;
+	}
+}
+
+
 
 /* FONTS */
 @font-face {
-    font-family: FjallaOne;
-    src: url(./fonts/FjallaOne-Regular.ttf);
+	font-family: FjallaOne;
+	src: url(./fonts/FjallaOne-Regular.ttf);
 }
 
 @font-face {
-    font-family: LibreFranklin;
-    src: url(./fonts/LibreFranklin-Regular.ttf);
-    font-weight: normal;
-    font-style: normmal;
+	font-family: LibreFranklin;
+	src: url(./fonts/LibreFranklin-Regular.ttf);
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: LibreFranklin;
-    src: url(./fonts/LibreFranklin-Italic.ttf);
-    font-weight: normal;
-    font-style: italic;
+	font-family: LibreFranklin;
+	src: url(./fonts/LibreFranklin-Italic.ttf);
+	font-weight: normal;
+	font-style: italic;
 }
 
 @font-face {
-    font-family: LibreFranklin;
-    src: url(./fonts/LibreFranklin-Bold.ttf);
-    font-weight: bold;
-    font-style: normmal;
+	font-family: LibreFranklin;
+	src: url(./fonts/LibreFranklin-Bold.ttf);
+	font-weight: bold;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: LibreFranklin;
-    src: url(./fonts/LibreFranklin-BoldItalic.ttf);
-    font-weight: bold;
-    font-style: italic;
+	font-family: LibreFranklin;
+	src: url(./fonts/LibreFranklin-BoldItalic.ttf);
+	font-weight: bold;
+	font-style: italic;
 }
 
 

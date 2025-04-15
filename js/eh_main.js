@@ -1,6 +1,7 @@
 // Mapbox Token, please change to go live.
 mapboxgl.accessToken = "pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg";
 
+
 // Create map.
 const ehMap = new mapboxgl.Map({
 	container: "map",
@@ -9,6 +10,7 @@ const ehMap = new mapboxgl.Map({
 	zoom: 1.5,
 	projection: "equalEarth"
 });
+
 
 // Get associations data.
 const fetchAssociations = async () => {
@@ -20,8 +22,9 @@ const fetchAssociations = async () => {
 	}
 };
 
-// Arrays for associations IDs.
-const associationLayers = {
+
+// Arrays for layers IDs.
+const layersId = {
 	major: [],
 	national: [],
 	clickable: []
@@ -44,20 +47,20 @@ const addAssociations = (data) => {
 			},
 			filter: [
 				"any",
-				...countries.map((country) => ["==", "adm0_a3", country])
+				...countries.map(country => ["==", "adm0_a3", country])
 			],
 			metadata
 		});
 
-		associationLayers[isMajor ? "major" : "national"].push(id);
-		associationLayers.clickable.push(id);
+		layersId[isMajor ? "major" : "national"].push(id);
+		layersId.clickable.push(id);
 	});
 };
 
 // Association titles layer.
-const addAssociationsLabels = () => {
+const addMajorAssociationsLabels = () => {
 	ehMap.addLayer({
-		id: "associations_labels",
+		id: "majorAssociationsLabels",
 		type: "symbol",
 		source: "associationsLabels",
 		layout: {
@@ -68,69 +71,23 @@ const addAssociationsLabels = () => {
 			"text-anchor": 'center'
 		}
 	});
-	associationLayers.clickable.push("institutions");
+	layersId.clickable.push("majorAssociationsLabels");
 };
 
 // Institutions layer.
 const addInstitutions = () => {
 	ehMap.addLayer({
-		id: "institutions",
+		id: "institutionsPoints",
 		type: "circle",
-		source: "institutionsPoints",
+		source: "institutions",
 		layout: { visibility: "none" },
 		paint: {
 			"circle-radius": 6,
-			"circle-color": "#685ea0"
+			"circle-color": ["get", "color"],
+			"circle-opacity": 0.7
 		}
 	});
-	associationLayers.clickable.push("institutions");
-};
-
-// Institutions Sidebar List
-const addInstitutionsList = () => {
-	const listElement = document.getElementById("institutionsList");
-	const featuresInfo = [];
-	const features = ehMap.queryRenderedFeatures({layers: ['institutions']});
-
-	features.forEach(feature => {
-		const coordinates = feature.geometry.coordinates;
-		const props = feature.properties;
-		featuresInfo.push([props, coordinates]);
-		featuresInfo.sort((a, b) => a[0].name.localeCompare(b[0].name));
-	});
-
-	featuresInfo.forEach(e => {
-		const li = document.createElement('li');
-		li.className = "institutionListElm"
-		
-		let a = document.createElement('a');
-		a.innerHTML = e[0].name;
-		a.href = "#";
-		a.className = "institutionListLink"
-
-		a.addEventListener("click", (link) => {
-			link.preventDefault();
-			document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
-
-			const popupInfo = `
-				<h2>${e[0].name}</h2>
-				<p>${e[0].basicInfo}</p>
-				${e[0].city ? `<h3>${e[0].city + ", " + e[0].countries}</h3>` : ""}
-				<p><b>Website: <a href="http://${e[0].website}" target="_blank" rel="noopener noreferrer">${e[0].website}</a></b></p>
-			`;
-
-			new mapboxgl.Popup({
-				className: "mapPopup",
-				maxWidth: "none"
-			})
-			.setLngLat(e[1])
-			.setHTML(popupInfo)
-			.addTo(ehMap);
-		});
-
-		li.appendChild(a);		
-		listElement.appendChild(li);
-	})
+	layersId.clickable.push("institutionsPoints");
 };
 
 
@@ -146,34 +103,139 @@ ehMap.on("load", async () => {
 		data: "./data/eh_mapData_associationsLabels.geojson"
 	});
 
-	ehMap.addSource("institutionsPoints", {
+	ehMap.addSource("institutions", {
 		type: "geojson",
 		data: "./data/eh_mapData_institutions.geojson"
 	});
 
 	const associations = await fetchAssociations();
 	addAssociations(associations);
-	addAssociationsLabels();
+	addMajorAssociationsLabels();
 	addInstitutions();
 });
 
 
-// Change cursor on hover.
-const togglePointer = (cursorType) => () => {
-	ehMap.getCanvas().style.cursor = cursorType;
+
+// Add sidebar information.
+let nationalInfoSaved = false;
+let institutionsInfoSaved = false;
+let layersInfo = {national: [],	institutions: []};
+
+// Wait for layer source to load when visibility is toggled.
+const waitSourceLoad = (sourceId) => {
+	return new Promise(resolve => {
+		const handler = (e) => {
+			if (e.sourceId === sourceId && e.isSourceLoaded && !e.sourceDataType) {
+				ehMap.off('sourcedata', handler);
+				resolve();
+			}
+		};
+		ehMap.on('sourcedata', handler);
+	});
 };
 
-ehMap.on("mouseenter", associationLayers.clickable, togglePointer("pointer"));
-ehMap.on("mouseleave", associationLayers.clickable, togglePointer(""));
+// Load data to layersInfo array.
+const loadSidebarData = async (layer) => {
+	if (layer === "national" && !nationalInfoSaved) {
+		layersId.national.forEach(e => {
+			layersInfo.national.push(ehMap.getLayer(e).metadata);
+		});
+		nationalInfoSaved = true;
+	} else if (layer === "institutions" && !institutionsInfoSaved) {
+		await waitSourceLoad("institutions");
+		const features = ehMap.queryRenderedFeatures({layers: ['institutionsPoints']});
+		features.forEach((e, i) => {
+			layersInfo.institutions.push(e.properties);
+			layersInfo.institutions[i].coordinates = e.geometry.coordinates;
+		});
+		institutionsInfoSaved = true;
+	}
+}
 
+
+// Add data as list of links in the sidebar and create popup on click.
+const listElement = document.getElementById("dataList");
+const addSidebarList = (layer) => {
+	const addListElements = (e) => {
+		const ul = document.createElement("ul");
+		const li = document.createElement("li");
+		li.className = "institutionListElm"
+		
+		let a = document.createElement('a');
+		a.innerHTML = e.name;
+		a.href = "#";
+		a.className = "institutionListLink"
+
+		a.addEventListener("click", (link) => {
+			link.preventDefault();
+			document.querySelectorAll(".mapboxgl-popup").forEach(popup => popup.remove());
+
+			const popupInfo = `
+				<h2>${e.name}</h2>
+				<p>${e.basicInfo}</p>
+				${e.city ? `<h3>${e.city + ", " + e.countries}</h3>` : ""}
+				<p><b>Website: <a href="http://${e.website}" target="_blank" rel="noopener noreferrer">${e.website}</a></b></p>
+			`;
+
+			new mapboxgl.Popup({
+				className: "mapPopup",
+				maxWidth: "none"
+			})
+			.setLngLat(e.coordinates)
+			.setHTML(popupInfo)
+			.addTo(ehMap);
+		});
+
+		li.appendChild(a);	
+		ul.appendChild(li);	
+		listElement.appendChild(ul);
+	}
+
+	let areaGroups = {};
+
+	// Group elements by area in Institutions, in Nationals leave as they come
+	if (layer === "institutions") {
+		layersInfo.institutions.forEach(e => {
+			const area = e.area || "Unknown area";
+			if (!areaGroups[area]) areaGroups[area] = [];
+			areaGroups[area].push(e);
+		});
+
+		for(let area in areaGroups) {
+			const areaHeader = document.createElement("h3");
+			areaHeader.innerHTML = area;
+			listElement.appendChild(areaHeader);
+			areaGroups[area].forEach(e => addListElements(e));
+		}
+	} else {
+		layersInfo[layer].forEach(e => addListElements(e));
+	}
+}
+
+// Remove sidebar list elements.
+const removeSidebarList = (layer) => {
+	listElement.innerHTML = "";
+}
 
 // Toggle sidebar.
 let sidebarVisible = false;
-const toggleSidebarOn = () => {
+const toggleSidebarOn = async (layer) => {
+	const listTitle = layer === "national"
+	? "National Associations of environmental history:"
+	: "Institutions of environmental history:";
+
 	if (!sidebarVisible) {
 		document.getElementById("mapContainer").classList.add("hasSidebar");
 		document.getElementById("sidebar").classList.remove("isHidden");
+		document.getElementById("dataList_title").innerHTML = listTitle;
+		await loadSidebarData(layer);
+		addSidebarList(layer);
 		sidebarVisible = true;
+	} else {
+		document.getElementById("dataList_title").innerHTML = listTitle;
+		removeSidebarList();
+		await loadSidebarData(layer);
+		addSidebarList(layer);
 	}
 
 	ehMap.resize();
@@ -181,9 +243,10 @@ const toggleSidebarOn = () => {
 
 const toggleSidebarOff = () => {
 	if (sidebarVisible) {
+		document.getElementById("dataList_title").innerHTML = "";
 		document.getElementById("mapContainer").classList.remove("hasSidebar");
 		document.getElementById("sidebar").classList.add("isHidden");
-		document.querySelectorAll(".institutionListElm").forEach(e => e.remove());
+		removeSidebarList();
 		sidebarVisible = false;
 	}
 
@@ -192,9 +255,9 @@ const toggleSidebarOff = () => {
 
 
 // Open popup on layer click.
-ehMap.on("click", associationLayers.clickable, (e) => {
+ehMap.on("click", layersId.clickable, (e) => {
 	const feature = e.features[0];
-	const isInstitution = feature.layer.id === "institutions";
+	const isInstitution = feature.layer.id === "institutionsPoints";
 	const metadata = isInstitution ? feature.properties	: feature.layer.metadata;
 	const isNational = metadata.category === "national";
 
@@ -216,49 +279,45 @@ ehMap.on("click", associationLayers.clickable, (e) => {
 });
 
 
-// Add Institutions list if layer has loaded when visible.
-ehMap.on('sourcedata', (e) => {
-	if (e.sourceId === "institutionsPoints" && e.isSourceLoaded === true && !e.sourceDataType) {
-		addInstitutionsList();
-	}
-});
-
-
 // Change visibility on button click.
 document.querySelectorAll(".layerToggle").forEach((button) => {
-	button.addEventListener("click", () => {
-		if (button.id === "institutions") { 
-			toggleSidebarOn();
-		} else {
-			toggleSidebarOff();
-		}
-
+	button.addEventListener("click", async () => {
 		document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
+
+		const visibilitySettings = {
+			majorAssociations: {major: "visible", majorLabels: "visible", national: "none", institutions: "none"},
+			nationalAssociations: {major: "none", majorLabels: "none", national: "visible", institutions: "none"},
+			institutions: {major: "none", majorLabels: "none", national: "none", institutions: "visible"},
+		};
+
+		const state = visibilitySettings[button.id];
+
+		layersId.major.forEach(id => {ehMap.setLayoutProperty(id, "visibility", state.major);});
+		layersId.national.forEach(id => {ehMap.setLayoutProperty(id, "visibility", state.national);});
+		ehMap.setLayoutProperty("majorAssociationsLabels", "visibility", state.majorLabels);		
+		ehMap.setLayoutProperty("institutionsPoints", "visibility", state.institutions);
+
+		if (button.id === "institutions") {
+			await toggleSidebarOn("institutions");
+		} else if (button.id === "nationalAssociations") {
+			await toggleSidebarOn("national");
+		} else {
+			toggleSidebarOff();	
+		}
 
 		ehMap.flyTo({
 			center: [0, 0],
 			zoom: 1.5,
 			speed: 1
 		});
-
-		const visibilitySettings = {
-			major_associations: {major: "visible", majorLabels: "visible", national: "none", institutions: "none"},
-			national_associations: {major: "none", majorLabels: "none", national: "visible", institutions: "none"},
-			institutions: {major: "none", majorLabels: "none", national: "none", institutions: "visible"},
-		};
-
-		const state = visibilitySettings[button.id];
-
-		associationLayers.major.forEach(id => {
-			ehMap.setLayoutProperty(id, "visibility", state.major);
-		});
-
-		ehMap.setLayoutProperty("associations_labels", "visibility", state.majorLabels);
-
-		associationLayers.national.forEach(id => {
-			ehMap.setLayoutProperty(id, "visibility", state.national);
-		});
-
-		ehMap.setLayoutProperty("institutions", "visibility", state.institutions);
 	});
 });
+
+
+// Change cursor on hover.
+const togglePointer = (cursorType) => () => {
+	ehMap.getCanvas().style.cursor = cursorType;
+};
+
+ehMap.on("mouseenter", layersId.clickable, togglePointer("pointer"));
+ehMap.on("mouseleave", layersId.clickable, togglePointer(""));

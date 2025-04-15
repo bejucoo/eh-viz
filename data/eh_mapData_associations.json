@@ -5,13 +5,12 @@
 		"id": "aseh_major",
 		"category": "major",
 		"website": "aseh.org",
-		"basicInfo": "The <b>American Association of Environmental History</b>, was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called Environmental History. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
+		"basicInfo": "The <b>American Association of Environmental History (ASEH)</b> was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called <i>Environmental History</i>. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
 		"countries": [
 			"USA"
 		],
 		"color": "#0A3161",
-		"zoomCoords": [-98.5, 39.9],
-		"zoomLevel": 3
+		"coordinates": [-98.5, 39.9]
 	},
 	{
 		"name": "European Association of Environmental History",
@@ -19,14 +18,12 @@
 		"id": "eseh",
 		"category": "major",
 		"website": "eseh.org",
-		"basicInfo": "Formed in 1999, the <b>European Society for Environmental History</b> is the second oldest society as well as the most diverse. As <a href='http://eseh.org/about-us/regions/' target='_blank' rel='noopener noreferrer'>this map shows</a>, besides most European countries, it includes South Africa, Australia, Turkey, Israel and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biannually since 2001, offers various prizes and is associated with the journals Environment and History and Arcadia.",
+		"basicInfo": "Formed in 1999, the <b>European Society for Environmental History (ESEH)</b> is the second oldest society as well as the most diverse. As this map shows, besides most European countries, it includes South Africa, Australia, Turkey, Israel, and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biennially since 2001, offers various prizes, and is associated with the journals <i>Environment and History</i> and <i>Arcadia.</i>",
 		"countries": [
-			"PRT", "ESP", "FRA", "GBR", "IRL", "BEL", "CHE", "ITA", "NLD", "LUX", "DEU", "AUT", "SVN", "HRV", "POL", "CZE", "SVK", "HUN", "SRB", "MKD", "GRC", "ISL", "NOR", "SWE", "FIN", "EST", "LTU", "LVA", "UKR", "ROU", "TUR", "ISR", "RUS", "ZAF", "AUS"
+			"PRT", "ESP", "FRA", "GBR", "IRL", "BEL", "CHE", "ITA", "NLD", "LUX", "DEU", "AUT", "SVN", "HRV", "POL", "CZE", "SVK", "HUN", "SRB", "MKD", "GRC", "ISL", "DNK", "NOR", "SWE", "FIN", "EST", "LTU", "LVA", "UKR", "ROU", "TUR", "ISR", "RUS", "ZAF", "AUS"
 		],
-		"coordinates": [],
 		"color": "#1d95d0",
-		"zoomCoords": [24, 6],
-		"zoomLevel": 2
+		"coordinates": [24, 6]
 	},
 	{
 		"name": "Latin American and Caribbean Society for Environmental History",
@@ -34,14 +31,12 @@
 		"id": "solcha",
 		"category": "major",
 		"website": "solcha.org",
-		"basicInfo": "The <b>Latin American and Caribbean Society for Environmental History</b> is the only society representing a region of the Global South. It was constituted in 2006, although the meeting of 2004 can be considered its start. It meets biannually and, since 2010, has a journal, <i>HALAC: Historia Ambiental Latinoamericana y Caribeña.</i>",
+		"basicInfo": "The <b>Latin American and Caribbean Society for Environmental History (SOLCHA)</b> is the only society representing a region of the Global South. It was formed in 2006, although the meeting of 2004 can be considered its start. It meets biannually and, since 2010, has a journal, <i>HALAC: Historia Ambiental Latinoamericana y Caribeña</i>.",
 		"countries": [
 			"MEX", "GTM", "BLZ", "SLV", "CUB", "JAM", "HTI", "DOM", "PRI", "HND", "NIC", "CRI", "PAN", "COL", "VEN", "TTO", "ECU", "BRA", "PER", "BOL", "ARG", "CHL", "PRY", "URY"
 		],
-		"coordinates": [],
 		"color": "#fed832",
-		"zoomCoords": [-48, -12],
-		"zoomLevel": 2.4
+		"coordinates": [-48, -12]
 	},
 	{
 		"name": "Asian Association for Environmental History",
@@ -49,14 +44,12 @@
 		"id": "aaeh",
 		"category": "major",
 		"website": "iceds.net/aaeh",
-		"basicInfo": "The <b>Asian Association for Environmental History </b>, is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue</i>.",
+		"basicInfo": "The <b>Asian Association for Environmental History (AAEH)</b> is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue.</i>",
 		"countries": [
 			"JPN", "KOR", "CHN"
 		],
-		"coordinates": [],
 		"color": "#e0182e",
-		"zoomCoords": [96, 8],
-		"zoomLevel": 2.6
+		"coordinates": [96, 8]
 	},
 	{
 		"name": "American Association of Environmental History",
@@ -69,8 +62,7 @@
 			"USA"
 		],
 		"color": "#0A3161",
-		"zoomCoords": [-98.5, 39.9],
-		"zoomLevel": 3
+		"coordinates": [-98.5, 39.9]
 	},
 	{
 		"name": "Network in Canadian History & Environment",
@@ -83,8 +75,7 @@
 			"CAN"
 		],
 		"color": "#FF0000",
-		"zoomCoords": [-98.26, 59.31],
-		"zoomLevel": 3
+		"coordinates": [-98.26, 59.31]
 	},
 	{
 		"name": "Australian & Aotearoa New Zealand Environmental History Network",
@@ -97,8 +88,7 @@
 			"AUS", "NZL"
 		],
 		"color": "#FFF200",
-		"zoomCoords": [141.4, -27.6],
-		"zoomLevel": 3
+		"coordinates": [141.4, -27.6]
 	},
 	{
 		"name": "Network for the Study of Environmental History of Turkey",
@@ -111,12 +101,11 @@
 			"TUR"
 		],
 		"color": "#C8102E",
-		"zoomCoords": [35.8, 38.3],
-		"zoomLevel": 4
+		"coordinates": [35.8, 38.3]
 	},
 	{
 		"name": "Grupo de Trabalho História Ambiental, da Associação Nacional de História",
-		"acronym": "ANPUH",
+		"acronym": "",
 		"id": "anpuh",
 		"category": "national",
 		"website": "gthistoriaambiental.org.br",
@@ -125,8 +114,7 @@
 			"BRA"
 		],
 		"color": "#009739",
-		"zoomCoords": [-51.3, -12.6],
-		"zoomLevel": 3
+		"coordinates": [-51.3, -12.6]
 	},
 	{
 		"name": "Red Portuguesa de Historia Ambiental",
@@ -139,8 +127,7 @@
 			"PRT"
 		],
 		"color": "#046A38",
-		"zoomCoords": [-5.8, 39.7],
-		"zoomLevel": 4
+		"coordinates": [-5.8, 39.7]
 	},
 	{
 		"name": "Irish Environmental History Network",
@@ -153,8 +140,7 @@
 			"IRL"
 		],
 		"color": "#FF8200",
-		"zoomCoords": [-1.1, 52.8],
-		"zoomLevel": 4
+		"coordinates": [-1.1, 52.8]
 	},
 	{
 		"name": "Red Universitaria Española de Historia Ambiental",
@@ -167,7 +153,6 @@
 			"ESP"
 		],
 		"color": "#F1BF00",
-		"zoomCoords": [-2.3, 38.3],
-		"zoomLevel": 4
+		"coordinates": [-2.3, 38.3]
 	}
 ]
