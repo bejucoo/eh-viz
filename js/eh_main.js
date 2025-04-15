@@ -143,8 +143,10 @@ const loadSidebarData = async (layer) => {
 		nationalInfoSaved = true;
 	} else if (layer === "institutions" && !institutionsInfoSaved) {
 		await waitSourceLoad("institutions");
-		const features = ehMap.queryRenderedFeatures({layers: ['institutionsPoints']});
-		features.forEach((e, i) => {
+		const features = ehMap.querySourceFeatures('institutions', {sourceLayer: 'institutionsPoints'});
+		const featuresNames = features.map(e => e.properties.name)
+		const filteredFeatures = features.filter(({ properties }, index) =>	!featuresNames.includes(properties?.name, index + 1));
+		filteredFeatures.forEach((e, i) => {
 			layersInfo.institutions.push(e.properties);
 			layersInfo.institutions[i].coordinates = e.geometry.coordinates;
 		});
