@@ -35,6 +35,7 @@ html, body {
 	grid-template-columns: 1fr;
 	column-gap: 10px;
 	height: 100%;
+	overflow: scroll;
 }
 
 #mapContainer.hasSidebar {
@@ -48,6 +49,11 @@ html, body {
 
 #sidebar {
 	padding: 5%;
+	overflow: scroll;
+}
+
+#dataList {
+	max-height: 100%;
 }
 
 .isHidden {
@@ -94,11 +100,6 @@ html, body {
 		grid-template-columns: unset;
 		grid-template-rows: 0.5fr 0.5fr;
 		row-gap: 10px;
-	}
-
-	#sidebar {
-		max-height: 100%;
-		overflow: scroll;
 	}
 }
 
