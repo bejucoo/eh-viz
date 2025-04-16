@@ -86,19 +86,19 @@
 		"coordinates": [-98.26, 59.31]
 	},
 	{
-		"name": "Australian & Aotearoa New Zealand Environmental History Network",
-		"acronym": "AANZEHN",
-		"id": "aanzehn",
+		"name": "Grupo de Trabalho História Ambiental, da Associação Nacional de História",
+		"acronym": "",
+		"id": "anpuh",
 		"category": "national",
-		"website": "www.environmentalhistory-au-nz.org",
+		"website": "gthistoriaambiental.org.br",
 		"basicInfo": "",
-		"countries": "Australia, New Zealand",
+		"countries": "Brasil",
 		"countriesPolygons": [
-			"AUS", "NZL"
+			"BRA"
 		],
-		"area": "Oceania",
-		"color": "#FFF200",
-		"coordinates": [141.4, -27.6]
+		"area": "Latin America",
+		"color": "#009739",
+		"coordinates": [-51.3, -12.6]
 	},
 	{
 		"name": "Network for the Study of Environmental History of Turkey",
@@ -116,21 +116,6 @@
 		"coordinates": [35.8, 38.3]
 	},
 	{
-		"name": "Grupo de Trabalho História Ambiental, da Associação Nacional de História",
-		"acronym": "",
-		"id": "anpuh",
-		"category": "national",
-		"website": "gthistoriaambiental.org.br",
-		"basicInfo": "",
-		"countries": "Brasil",
-		"countriesPolygons": [
-			"BRA"
-		],
-		"area": "South America",
-		"color": "#009739",
-		"coordinates": [-51.3, -12.6]
-	},
-	{
 		"name": "Rede Portuguesa de História Ambiental",
 		"acronym": "REPORT(H)A",
 		"id": "reportha",
@@ -143,7 +128,7 @@
 		],
 		"area": "Europe",
 		"color": "#046A38",
-		"coordinates": [-5.8, 39.7]
+		"coordinates": [-9.1, 38.7]
 	},
 	{
 		"name": "Irish Environmental History Network",
@@ -158,7 +143,7 @@
 		],
 		"area": "Europe",
 		"color": "#FF8200",
-		"coordinates": [-1.1, 52.8]
+		"coordinates": [-7.7, 53.2]
 	},
 	{
 		"name": "Red Universitaria Española de Historia Ambiental",
@@ -174,5 +159,20 @@
 		"area": "Europe",
 		"color": "#F1BF00",
 		"coordinates": [-2.3, 38.3]
+	},
+	{
+		"name": "Australian & Aotearoa New Zealand Environmental History Network",
+		"acronym": "AANZEHN",
+		"id": "aanzehn",
+		"category": "national",
+		"website": "www.environmentalhistory-au-nz.org",
+		"basicInfo": "",
+		"countries": "Australia, New Zealand",
+		"countriesPolygons": [
+			"AUS", "NZL"
+		],
+		"area": "Oceania",
+		"color": "#FFF200",
+		"coordinates": [141.4, -27.6]
 	}
 ]
