@@ -32,14 +32,14 @@ const layersId = {
 
 // Aassociations layers.
 const addAssociations = (data) => {
-	data.forEach(({id, color, countries, ...metadata}) => {
+	data.forEach(({id, color, countriesPolygons, ...metadata}) => {
 		const isMajor = metadata.category === "major";
 		const visibility = isMajor ? "visible" : "none";
 
 		ehMap.addLayer({
 			id,
 			type: "fill",
-			source: "countriesPolygons",
+			source: "worldMap",
 			layout: { visibility },
 			paint: {
 				"fill-color": color,
@@ -47,7 +47,7 @@ const addAssociations = (data) => {
 			},
 			filter: [
 				"any",
-				...countries.map(country => ["==", "adm0_a3", country])
+				...countriesPolygons.map(country => ["==", "adm0_a3", country])
 			],
 			metadata
 		});
@@ -66,12 +66,11 @@ const addMajorAssociationsLabels = () => {
 		layout: {
 			visibility: "visible",
 			"text-field": ['get', 'acronym'],
-			"text-font": ['Fjalla One Regular'],
-			"text-size": 32,
+			"text-font": ['Libre Franklin Bold'],
+			"text-size": 20,
 			"text-anchor": 'center'
 		}
 	});
-	layersId.clickable.push("majorAssociationsLabels");
 };
 
 // Institutions layer.
@@ -93,9 +92,9 @@ const addInstitutions = () => {
 
 // Load sources and add layers.
 ehMap.on("load", async () => {
-	ehMap.addSource("countriesPolygons", {
+	ehMap.addSource("worldMap", {
 		type: "geojson",
-		data: "./resources/countriesPolygons/countriesMQ.geojson"
+		data: "./resources/worldMap/worldMapMQ.geojson"
 	});
 
 	ehMap.addSource("associationsLabels", {
@@ -136,12 +135,12 @@ const waitSourceLoad = (sourceId) => {
 
 // Load data to layersInfo array.
 const loadSidebarData = async (layer) => {
-	if (layer === "national" && !nationalInfoSaved) {
+	if (layer === "national" && !nationalInfoSaved && layersInfo.national.length === 0) {
 		layersId.national.forEach(e => {
 			layersInfo.national.push(ehMap.getLayer(e).metadata);
 		});
 		nationalInfoSaved = true;
-	} else if (layer === "institutions" && !institutionsInfoSaved) {
+	} else if (layer === "institutions" && !institutionsInfoSaved && layersInfo.institutions.length === 0) {
 		await waitSourceLoad("institutions");
 		const features = ehMap.querySourceFeatures('institutions', {sourceLayer: 'institutionsPoints'});
 		const featuresNames = features.map(e => e.properties.name)
@@ -162,14 +161,18 @@ const addSidebarList = (layer) => {
 		const ul = document.createElement("ul");
 		const li = document.createElement("li");
 		li.className = "institutionListElm"
-		
-		let a = document.createElement('a');
-		a.innerHTML = e.name;
-		a.href = "#";
-		a.className = "institutionListLink"
 
-		a.addEventListener("click", (link) => {
-			link.preventDefault();
+		let p = document.createElement("p");
+		const listElementSpacer = document.createElement("br");
+		
+		p.innerHTML = layer === "institutions"
+		? `<a href="#" class="listNameLink">${e.name}, ${e.countries}</a><br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>`
+		: `<a href="#" class="listNameLink">${e.name}</a>`;
+
+		const link = p.querySelector(".listNameLink");
+
+		link.addEventListener("click", elm => {
+			elm.preventDefault();
 			document.querySelectorAll(".mapboxgl-popup").forEach(popup => popup.remove());
 
 			const popupInfo = `
@@ -188,29 +191,23 @@ const addSidebarList = (layer) => {
 			.addTo(ehMap);
 		});
 
-		li.appendChild(a);	
+		li.appendChild(p);	
 		ul.appendChild(li);	
 		listElement.appendChild(ul);
 	}
 
 	let areaGroups = {};
+	layersInfo[layer].forEach(e => {
+		const area = e.area || "Unknown area";
+		if (!areaGroups[area]) areaGroups[area] = [];
+		areaGroups[area].push(e);
+	});
 
-	// Group elements by area in Institutions, in Nationals leave as they come
-	if (layer === "institutions") {
-		layersInfo.institutions.forEach(e => {
-			const area = e.area || "Unknown area";
-			if (!areaGroups[area]) areaGroups[area] = [];
-			areaGroups[area].push(e);
-		});
-
-		for(let area in areaGroups) {
-			const areaHeader = document.createElement("h3");
-			areaHeader.innerHTML = area;
-			listElement.appendChild(areaHeader);
-			areaGroups[area].forEach(e => addListElements(e));
-		}
-	} else {
-		layersInfo[layer].forEach(e => addListElements(e));
+	for(let area in areaGroups) {
+		const areaHeader = document.createElement("h3");
+		areaHeader.innerHTML = area;
+		listElement.appendChild(areaHeader);
+		areaGroups[area].forEach(e => addListElements(e));
 	}
 }
 
@@ -223,8 +220,8 @@ const removeSidebarList = (layer) => {
 let sidebarVisible = false;
 const toggleSidebarOn = async (layer) => {
 	const listTitle = layer === "national"
-	? "National Associations of environmental history:"
-	: "Institutions of environmental history:";
+	? "National Associations of Environmental History:"
+	: "Institutions of Environmental History:";
 
 	if (!sidebarVisible) {
 		document.getElementById("mapContainer").classList.add("hasSidebar");
@@ -256,7 +253,7 @@ const toggleSidebarOff = () => {
 }
 
 
-// Open popup on layer click.
+// Open popup on layer hover.
 ehMap.on("click", layersId.clickable, (e) => {
 	const feature = e.features[0];
 	const isInstitution = feature.layer.id === "institutionsPoints";

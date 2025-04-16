@@ -12,8 +12,8 @@
 				"basicInfo": "",
 				"countries": "USA",
 				"city": "Durham",
-				"area": "USA",
-				"color": "#0A3161"
+				"area": "North America",
+				"color": "#E64A19"
 			},
 			"geometry": {
 				"coordinates": [
@@ -34,8 +34,8 @@
 				"basicInfo": "",
 				"countries": "USA",
 				"city": "University of Wisconsin, Madison",
-				"area": "USA",
-				"color": "#0A3161"
+				"area": "North America",
+				"color": "#E64A19"
 			},
 			"geometry": {
 				"coordinates": [
@@ -211,7 +211,7 @@
 				"countries": "Australia",
 				"city": "Australian National University, Canberra",
 				"area": "Oceania",
-				"color": "#047A37"
+				"color": "#388E3C"
 			},
 			"geometry": {
 				"coordinates": [

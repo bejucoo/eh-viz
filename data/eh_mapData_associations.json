@@ -6,7 +6,8 @@
 		"category": "major",
 		"website": "aseh.org",
 		"basicInfo": "The <b>American Association of Environmental History (ASEH)</b> was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called <i>Environmental History</i>. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
-		"countries": [
+		"countries": "",
+		"countriesPolygons": [
 			"USA"
 		],
 		"color": "#0A3161",
@@ -18,8 +19,9 @@
 		"id": "eseh",
 		"category": "major",
 		"website": "eseh.org",
-		"basicInfo": "Formed in 1999, the <b>European Society for Environmental History (ESEH)</b> is the second oldest society as well as the most diverse. As this map shows, besides most European countries, it includes South Africa, Australia, Turkey, Israel, and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biennially since 2001, offers various prizes, and is associated with the journals <i>Environment and History</i> and <i>Arcadia.</i>",
-		"countries": [
+		"basicInfo": "Formed in 1999, the <b>European Society for Environmental History (ESEH)</b> is the second oldest society as well as the most diverse. As this map shows, besides most European countriesPolygons, it includes South Africa, Australia, Turkey, Israel, and Iceland, which means it connects scholars working in a variety of languages and national contexts. The society has been meeting biennially since 2001, offers various prizes, and is associated with the journals <i>Environment and History</i> and <i>Arcadia.</i>",
+		"countries": "",
+		"countriesPolygons": [
 			"PRT", "ESP", "FRA", "GBR", "IRL", "BEL", "CHE", "ITA", "NLD", "LUX", "DEU", "AUT", "SVN", "HRV", "POL", "CZE", "SVK", "HUN", "SRB", "MKD", "GRC", "ISL", "DNK", "NOR", "SWE", "FIN", "EST", "LTU", "LVA", "UKR", "ROU", "TUR", "ISR", "RUS", "ZAF", "AUS"
 		],
 		"color": "#1d95d0",
@@ -32,7 +34,8 @@
 		"category": "major",
 		"website": "solcha.org",
 		"basicInfo": "The <b>Latin American and Caribbean Society for Environmental History (SOLCHA)</b> is the only society representing a region of the Global South. It was formed in 2006, although the meeting of 2004 can be considered its start. It meets biannually and, since 2010, has a journal, <i>HALAC: Historia Ambiental Latinoamericana y Caribeña</i>.",
-		"countries": [
+		"countries": "",
+		"countriesPolygons": [
 			"MEX", "GTM", "BLZ", "SLV", "CUB", "JAM", "HTI", "DOM", "PRI", "HND", "NIC", "CRI", "PAN", "COL", "VEN", "TTO", "ECU", "BRA", "PER", "BOL", "ARG", "CHL", "PRY", "URY"
 		],
 		"color": "#fed832",
@@ -45,7 +48,8 @@
 		"category": "major",
 		"website": "iceds.net/aaeh",
 		"basicInfo": "The <b>Asian Association for Environmental History (AAEH)</b> is the most recent regional society. It was formed after the First World Congress of Environmental History (2009) as the Association for East Asian Environmental History. In 2023, it changed its name to expand to all of Asia and Oceania. Apart from sponsoring a biennial conference, it is starting the journal <i>The Asian Anthropocene in Dialogue.</i>",
-		"countries": [
+		"countries": "",
+		"countriesPolygons": [
 			"JPN", "KOR", "CHN"
 		],
 		"color": "#e0182e",
@@ -58,9 +62,11 @@
 		"category": "national",
 		"website": "aseh.org",
 		"basicInfo": "The <b>American Association of Environmental History</b>, was by far the first of its kind. It was created in 1977, just a year after its journal, which is now called Environmental History. It held its first conference in 1982 and is the only association that, since 2000, meets annually. Its array of prizes constitute a proof of its vigor.",
-		"countries": [
+		"countries": "United States",
+		"countriesPolygons": [
 			"USA"
 		],
+		"area": "North America",
 		"color": "#0A3161",
 		"coordinates": [-98.5, 39.9]
 	},
@@ -71,9 +77,11 @@
 		"category": "national",
 		"website": "niche-canada.org",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Canada",
+		"countriesPolygons": [
 			"CAN"
 		],
+		"area": "North America",
 		"color": "#FF0000",
 		"coordinates": [-98.26, 59.31]
 	},
@@ -84,9 +92,11 @@
 		"category": "national",
 		"website": "www.environmentalhistory-au-nz.org",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Australia, New Zealand",
+		"countriesPolygons": [
 			"AUS", "NZL"
 		],
+		"area": "Oceania",
 		"color": "#FFF200",
 		"coordinates": [141.4, -27.6]
 	},
@@ -97,9 +107,11 @@
 		"category": "national",
 		"website": "www.envhistturkey.com",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Turkey",
+		"countriesPolygons": [
 			"TUR"
 		],
+		"area": "Europe",
 		"color": "#C8102E",
 		"coordinates": [35.8, 38.3]
 	},
@@ -110,22 +122,26 @@
 		"category": "national",
 		"website": "gthistoriaambiental.org.br",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Brasil",
+		"countriesPolygons": [
 			"BRA"
 		],
+		"area": "South America",
 		"color": "#009739",
 		"coordinates": [-51.3, -12.6]
 	},
 	{
-		"name": "Red Portuguesa de Historia Ambiental",
+		"name": "Rede Portuguesa de História Ambiental",
 		"acronym": "REPORT(H)A",
 		"id": "reportha",
 		"category": "national",
 		"website": "www.reportha.org",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Portugal",
+		"countriesPolygons": [
 			"PRT"
 		],
+		"area": "Europe",
 		"color": "#046A38",
 		"coordinates": [-5.8, 39.7]
 	},
@@ -136,9 +152,11 @@
 		"category": "national",
 		"website": "www.tcd.ie/tceh/iehn",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Ireland",
+		"countriesPolygons": [
 			"IRL"
 		],
+		"area": "Europe",
 		"color": "#FF8200",
 		"coordinates": [-1.1, 52.8]
 	},
@@ -149,9 +167,11 @@
 		"category": "national",
 		"website": "ruedha.hypotheses.org",
 		"basicInfo": "",
-		"countries": [
+		"countries": "Spain",
+		"countriesPolygons": [
 			"ESP"
 		],
+		"area": "Europe",
 		"color": "#F1BF00",
 		"coordinates": [-2.3, 38.3]
 	}
