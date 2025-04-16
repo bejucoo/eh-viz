@@ -166,7 +166,7 @@ const addSidebarList = (layer) => {
 		const listElementSpacer = document.createElement("br");
 		
 		p.innerHTML = layer === "institutions"
-		? `<a href="#" class="listNameLink">${e.name}, ${e.countries}</a><br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>`
+		? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city}, ${e.countries}</a><br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>`
 		: `<a href="#" class="listNameLink">${e.name} ${e.acronym ? `(${e.acronym})`: ""}</a>`;
 
 		const link = p.querySelector(".listNameLink");
