@@ -100,42 +100,33 @@ html, body {
 
 /* FONTS */
 @font-face {
-	font-family: FjallaOne;
-	src: url(./fonts/FjallaOne-Regular.ttf);
-}
-
-@font-face {
-	font-family: LibreFranklin;
-	src: url(./fonts/LibreFranklin-Regular.ttf);
-	font-weight: normal;
+	font-family: "Libre Franklin";
+	font-weight: 400;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: LibreFranklin;
-	src: url(./fonts/LibreFranklin-Italic.ttf);
-	font-weight: normal;
+	font-family: "Libre Franklin";
+	font-weight: 400;
 	font-style: italic;
 }
 
 @font-face {
-	font-family: LibreFranklin;
-	src: url(./fonts/LibreFranklin-Bold.ttf);
-	font-weight: bold;
+	font-family: "Libre Franklin";
+	font-weight: 700;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: LibreFranklin;
-	src: url(./fonts/LibreFranklin-BoldItalic.ttf);
-	font-weight: bold;
+	font-family: "Libre Franklin";
+	font-weight: 700;
 	font-style: italic;
 }
 
 
 /* TEXT ELEMENTS"*/
 h1, h2, h3, button, a, p {
-	font-family: LibreFranklin;
+	font-family: "Libre Franklin";
 }
 
 h1, h2, h3 {
