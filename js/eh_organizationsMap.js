@@ -9,7 +9,7 @@ const ehMap = new mapboxgl.Map({
 	container: "map",
 	style: "mapbox://styles/bejuco/cm9bldki9001a01s34n1hbpig",
 	center: [0, 0],
-	zoom: isMobile ? 0 : 1.5,
+	zoom: isMobile ? 0 : 1.24,
 	projection: "equalEarth"
 });
 
@@ -26,11 +26,7 @@ const fetchAssociations = async () => {
 
 
 // Arrays for layers IDs.
-const layersId = {
-	major: [],
-	national: [],
-	clickable: []
-};
+const layersId = {major: [], national: [], clickable: []};
 
 // Aassociations layers.
 const addAssociations = (data) => {
@@ -83,9 +79,12 @@ const addInstitutions = () => {
 		source: "institutions",
 		layout: { visibility: "none" },
 		paint: {
-			"circle-radius": 6,
+			"circle-radius": 4,
 			"circle-color": ["get", "color"],
-			"circle-opacity": 0.7
+			"circle-opacity": 0.5,
+			"circle-stroke-width": 2,
+			"circle-stroke-color": ["get", "color"],
+			"circle-stroke-opacity": 1
 		}
 	});
 	layersId.clickable.push("institutionsPoints");
@@ -110,6 +109,7 @@ ehMap.on("load", async () => {
 	});
 
 	const associations = await fetchAssociations();
+
 	addAssociations(associations);
 	addMajorAssociationsLabels();
 	addInstitutions();
@@ -141,16 +141,20 @@ const loadSidebarData = async (layer) => {
 		layersId.national.forEach(e => {
 			layersInfo.national.push(ehMap.getLayer(e).metadata);
 		});
+
 		nationalInfoSaved = true;
 	} else if (layer === "institutions" && !institutionsInfoSaved && layersInfo.institutions.length === 0) {
 		await waitSourceLoad("institutions");
+
 		const features = ehMap.querySourceFeatures('institutions', {sourceLayer: 'institutionsPoints'});
 		const featuresNames = features.map(e => e.properties.name)
 		const filteredFeatures = features.filter(({ properties }, index) =>	!featuresNames.includes(properties?.name, index + 1));
+
 		filteredFeatures.forEach((e, i) => {
 			layersInfo.institutions.push(e.properties);
 			layersInfo.institutions[i].coordinates = e.geometry.coordinates;
 		});
+
 		institutionsInfoSaved = true;
 	}
 }
@@ -229,11 +233,14 @@ const toggleSidebarOn = async (layer) => {
 		document.getElementById("mapContainer").classList.add("hasSidebar");
 		document.getElementById("sidebar").classList.remove("isHidden");
 		document.getElementById("dataList_title").innerHTML = listTitle;
+
 		await loadSidebarData(layer);
+
 		addSidebarList(layer);
 		sidebarVisible = true;
 	} else {
 		document.getElementById("dataList_title").innerHTML = listTitle;
+
 		removeSidebarList();
 		await loadSidebarData(layer);
 		addSidebarList(layer);
@@ -247,6 +254,7 @@ const toggleSidebarOff = () => {
 		document.getElementById("dataList_title").innerHTML = "";
 		document.getElementById("mapContainer").classList.remove("hasSidebar");
 		document.getElementById("sidebar").classList.add("isHidden");
+
 		removeSidebarList();
 		sidebarVisible = false;
 	}
@@ -255,7 +263,7 @@ const toggleSidebarOff = () => {
 }
 
 
-// Open popup on layer hover.
+// Open popup on layer click.
 ehMap.on("click", layersId.clickable, (e) => {
 	const feature = e.features[0];
 	const isInstitution = feature.layer.id === "institutionsPoints";
@@ -286,9 +294,24 @@ document.querySelectorAll(".layerToggle").forEach((button) => {
 		document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
 
 		const visibilitySettings = {
-			majorAssociations: {major: "visible", majorLabels: "visible", national: "none", institutions: "none"},
-			nationalAssociations: {major: "none", majorLabels: "none", national: "visible", institutions: "none"},
-			institutions: {major: "none", majorLabels: "none", national: "none", institutions: "visible"},
+			majorAssociations: {
+				major:			"visible",
+				majorLabels:	"visible",
+				national:		"none",
+				institutions:	"none"
+			},
+			nationalAssociations: {
+				major:			"none",
+				majorLabels:	"none",
+				national:		"visible",
+				institutions:	"none"
+			},
+			institutions: {
+				major:			"none",
+				majorLabels:	"none",
+				national:		"none",
+				institutions:	"visible"
+			},
 		};
 
 		const state = visibilitySettings[button.id];
@@ -308,7 +331,7 @@ document.querySelectorAll(".layerToggle").forEach((button) => {
 
 		ehMap.flyTo({
 			center: [0, 0],
-			zoom: 1.5,
+			zoom: isMobile ? 0 : 1.24,
 			speed: 1
 		});
 	});

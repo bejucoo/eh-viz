@@ -13,7 +13,7 @@
 				"countries": "USA",
 				"city": "Durham",
 				"area": "North America",
-				"color": "#E64A19"
+				"color": "#FF000C"
 			},
 			"geometry": {
 				"coordinates": [
@@ -35,7 +35,7 @@
 				"countries": "USA",
 				"city": "University of Wisconsin, Madison",
 				"area": "North America",
-				"color": "#E64A19"
+				"color": "#FF000C"
 			},
 			"geometry": {
 				"coordinates": [
@@ -57,7 +57,7 @@
 				"countries": "UK",
 				"city": "University of Bristol, Bristol",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -79,7 +79,7 @@
 				"countries": "Estonia",
 				"city": "Tallinn University, Tallin",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -101,7 +101,7 @@
 				"countries": "Sweden",
 				"city": "Stockholm",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -123,7 +123,7 @@
 				"countries": "Spain",
 				"city": "Granada",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -145,7 +145,7 @@
 				"countries": "Germany",
 				"city": "Munich",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -167,7 +167,7 @@
 				"countries": "Ireland",
 				"city": "University of Cork, Cork",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -189,7 +189,7 @@
 				"countries": "Austria",
 				"city": "BOKU University, Vienna",
 				"area": "Europe",
-				"color": "#1d95d0"
+				"color": "#6F07E8"
 			},
 			"geometry": {
 				"coordinates": [
@@ -211,7 +211,7 @@
 				"countries": "Australia",
 				"city": "Australian National University, Canberra",
 				"area": "Oceania",
-				"color": "#388E3C"
+				"color": "#6ECC39"
 			},
 			"geometry": {
 				"coordinates": [
