@@ -1,0 +1,184 @@
+/* GENERAL */
+* {
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* MAIN CONTAINER */
+#viz {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-rows: 0.05fr 0.95fr;
+	background: #f7f7f7;
+}
+
+
+/* BUTTONS */
+#mapControls {
+	text-align: center;
+	padding: 30px 0 0 0;
+}
+
+.layerToggle {
+	margin: 0 5px;
+	padding: 10px 25px;
+	font-weight: bold;
+	border: 2px solid black;
+	background: #f7f7f7;
+	cursor: pointer;
+}
+
+.layerToggle:hover {
+	background: #d7d7d7
+}
+
+
+/* MAP & LIST */
+#mapContainer {
+	display: grid;
+	grid-template-columns: 1fr;
+	column-gap: 10px;
+	height: 100%;
+	overflow: scroll;
+	padding: 10px;
+}
+
+#mapContainer.hasSidebar {
+	grid-template-columns: 0.8fr 0.2fr;
+}
+
+#map, #sidebar {
+	height: 100%;
+}
+
+#sidebar {
+	padding: 5%;
+	overflow: scroll;
+	border-left: 1px dotted black;
+}
+
+.isHidden {
+	display: none;
+}
+
+
+/* POPUPS */
+.mapPopup {
+	width: 360px;
+}
+
+/* MAP ATTRIBUTION */
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+	background-color: #f7f7f7 !important;
+}
+
+
+
+/* RESPONSIVE */
+/* TABLE AND MOBILE */
+@media only screen and (max-width: 1024px) {
+	#mapContainer.hasSidebar {
+		grid-template-columns: unset;
+		grid-template-rows: 0.5fr 0.5fr;
+		row-gap: 10px;
+	}
+
+	.layerToggle {
+		margin: 5px 10px;
+	}
+
+	#sidebar {
+		border: none;
+	}
+}
+
+
+
+/* FONTS */
+@font-face {
+	font-family: "Libre Franklin";
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Libre Franklin";
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Libre Franklin";
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Libre Franklin";
+	font-weight: 700;
+	font-style: italic;
+}
+
+
+/* TEXT ELEMENTS"*/
+h1, h2, h3, button, a, p {
+	font-family: "Libre Franklin";
+}
+
+h1, h2, h3 {
+	margin-top: 0;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+
+a:link {
+	transition: color .2s linear;
+	color: #51C2C8;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #51C2C8;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+a.listNameLink:link {
+	transition: color .2s linear;
+	color: #000000;
+	text-decoration: none;
+}
+
+a.listNameLink:visited {
+	color: #000000;
+	text-decoration: none;
+	text-weight: bold;
+}
+
+a.listNameLink:hover {
+	color: #51C2C8;
+	text-decoration: underline;
+}
+
+a.listWebsiteLink {
+	background-image: url(../resources/icons/external.svg);
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding-right: 1em;
+}
