@@ -289,7 +289,7 @@ ehMap.on("click", layersId.clickable, (e) => {
 
 
 // Change visibility on button click.
-document.querySelectorAll(".layerToggle").forEach((button) => {
+document.querySelectorAll(".layerToggle").forEach((button, index, buttonsArray) => {
 	button.addEventListener("click", async () => {
 		document.querySelectorAll(".mapboxgl-popup").forEach((popup) => popup.remove());
 
@@ -328,6 +328,18 @@ document.querySelectorAll(".layerToggle").forEach((button) => {
 		} else {
 			toggleSidebarOff();	
 		}
+
+		buttonsArray.forEach((btn, i) => {
+			if (i !== index) {
+				btn.classList.remove("active");
+			} else {
+				if (btn.classList.contains("active")) {
+					return;
+				} else {
+					btn.classList.add("active");
+				}
+			}
+		});
 
 		ehMap.flyTo({
 			center: [0, 0],

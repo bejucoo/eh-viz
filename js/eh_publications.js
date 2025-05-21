@@ -79,7 +79,7 @@ const addInstitutions = () => {
 		source: "institutions",
 		layout: { visibility: "none" },
 		paint: {
-			"circle-radius": 4,
+			"circle-radius": 5,
 			"circle-color": ["get", "color"],
 			"circle-opacity": 0.5,
 			"circle-stroke-width": 2,
