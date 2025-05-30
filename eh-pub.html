@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Environmental History Publications</title>
 
-	<script src='https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js'></script>
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css'>
+	<script src='./js/list.min.js'></script>
+	<script src='./js/masonry.min.js'></script>
+	<script src='./js/imagesloaded.min.js'></script>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&display=swap">
@@ -15,7 +16,18 @@
 </head>
 <body>
 	<div id="viz">
-		<p>Aqui va la pub</p>
+		<div id="filterControls">
+			<button id="all-publications" class="filterToggle active">
+				All publications
+			</button>
+			<div id="typesFilters"></div>
+			<div id="categoriesFilters"></div>
+			<div id="areasFilters"></div>
+		</div>
+
+		<div id="publicationsContainer" class="publicationsContainer">
+			<div class="list"></div>
+		</div>
 	</div>
 	<script type="text/javascript" src="./js/eh_publications.js"></script>
 </body>
