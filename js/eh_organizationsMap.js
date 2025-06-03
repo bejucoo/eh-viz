@@ -204,11 +204,19 @@ const addSidebarList = (layer) => {
 	}
 
 	let areaGroups = {};
+	const nationalAreasOrder = ["North America", "Latin America", "Europe", "Oceania"];
+	const institutionsAreasOrder = ["North America", "Europe", "Oceania", "Asia"];
+
 	layersInfo[layer].forEach(e => {
 		const area = e.area || "Unknown area";
 		if (!areaGroups[area]) areaGroups[area] = [];
 		areaGroups[area].push(e);
 	});
+
+	// Order elements
+	layer === "national"
+		? areaGroups = Object.fromEntries(nationalAreasOrder.map(key => [key, areaGroups[key]]))
+		: areaGroups = Object.fromEntries(institutionsAreasOrder.map(key => [key, areaGroups[key]]));
 
 	for(let area in areaGroups) {
 		const areaHeader = document.createElement("h3");
@@ -216,8 +224,6 @@ const addSidebarList = (layer) => {
 		listElement.appendChild(areaHeader);
 		areaGroups[area].forEach(e => addListElements(e));
 	}
-
-	console.log(areaGroups);
 }
 
 // Remove sidebar list elements.
