@@ -170,10 +170,10 @@ const addSidebarList = (layer) => {
 
 		let p = document.createElement("p");
 		const listElementSpacer = document.createElement("br");
-		
+
 		p.innerHTML = layer === "institutions"
-		? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city}, ${e.countries}</a><br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>`
-		: `<a href="#" class="listNameLink">${e.name} ${e.acronym ? `(${e.acronym})`: ""}</a>`;
+			? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city}, ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
+			: `<a href="#" class="listNameLink">${e.name} ${e.acronym ? `(${e.acronym})`: ""}</a>`;
 
 		const link = p.querySelector(".listNameLink");
 
@@ -184,8 +184,9 @@ const addSidebarList = (layer) => {
 			const popupInfo = `
 				<h2>${e.name}</h2>
 				<p>${e.basicInfo}</p>
+				${e.basicInfo && `<br>`}
 				${e.city ? `<h3>${e.city + ", " + e.countries}</h3>` : ""}
-				<p><b>Website: <a href="http://${e.website}" target="_blank" rel="noopener noreferrer">${e.website}</a></b></p>
+				${e.website ? `<p><b>Website: <a href="http://${e.website}" target="_blank" rel="noopener noreferrer">${e.website}</a></b></p>` : ""}
 			`;
 
 			new mapboxgl.Popup({
@@ -215,6 +216,8 @@ const addSidebarList = (layer) => {
 		listElement.appendChild(areaHeader);
 		areaGroups[area].forEach(e => addListElements(e));
 	}
+
+	console.log(areaGroups);
 }
 
 // Remove sidebar list elements.
@@ -274,8 +277,9 @@ ehMap.on("click", layersId.clickable, (e) => {
 		${isNational || isInstitution ? `<h2>${metadata.name}</h2>` : ""}
 		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
 		<p>${metadata.basicInfo}</p>
+		${metadata.basicInfo && `<br>`}
 		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
-		<p><b>Website:  <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></b></p>
+		${metadata.website ? `<p><b>Website: <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></b></p>` : ""}
 	`;
 
 	new mapboxgl.Popup({

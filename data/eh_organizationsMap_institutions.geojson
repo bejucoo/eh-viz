@@ -220,6 +220,72 @@
 				],
 				"type": "Point"
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "The Research Center for Chinese Ecological and Environmental History",
+				"acronym": "",
+				"id": "rc_china",
+				"category": "institution",
+				"website": "iceho.github.io/resources/docs/centerPublicHistory_Beijing.docx",
+				"basicInfo": "",
+				"countries": "China",
+				"city": "Nankai University, Tianjin",
+				"area": "Asia",
+				"color": "#f1680f"
+			},
+			"geometry": {
+				"coordinates": [
+					117.174256,
+					39.103736
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Center for Public History and Environmental Studies",
+				"acronym": "",
+				"id": "cph_china",
+				"category": "institution",
+				"website": "iceho.github.io/resources/docs/researchCenter_Tianjin.docx",
+				"basicInfo": "",
+				"countries": "China",
+				"city": "Tsinghua University, Beijing",
+				"area": "Asia",
+				"color": "#f1680f"
+			},
+			"geometry": {
+				"coordinates": [
+					116.326959,
+					39.998870
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Center for Environmental History ",
+				"acronym": "",
+				"id": "ceh_china",
+				"category": "institution",
+				"website": "cnwec.muc.edu.cn",
+				"basicInfo": "",
+				"countries": "China",
+				"city": "Minzu University, Beijing",
+				"area": "Asia",
+				"color": "#f1680f"
+			},
+			"geometry": {
+				"coordinates": [
+					116.31982,
+					39.950631
+				],
+				"type": "Point"
+			}
 		}
 	]
 }

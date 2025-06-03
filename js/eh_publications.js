@@ -16,14 +16,12 @@ const options = {
 	item: (values) => {
 		return `
 			<div class="publicationElement">
-				<h4 class="publicationType">${values.type}</h4>
 				<a href="${values.website}" target="_blank" rel="noreferrer">
 					<img src="./resources/images/publications/${values.name}.webp" alt="${values.name} image" class="publicationImg">
 				</a>
 				<h2 class="publicationName">
 					<a href="${values.website}" target="_blank" rel="noreferrer">${values.name}</a>
 				</h2>
-				${values.years !== '' ? `<h4 class="publicationYear">${values.years}</h4>` : ''}
 			</div>
 		`;
     }
@@ -65,7 +63,7 @@ const createFilters = (publications) => {
 				filterButton.id = e.toLowerCase().replaceAll(' ', '-');;
 				filterButton.classList.add("filterToggle");
 				filterButton.classList.add(key);
-				filterButton.innerText = e;
+				filterButton.innerText = key === "types" ? `${e}s` : e;
 
 				key !== "types" && filterButton.classList.add("isHidden");
 
@@ -82,7 +80,6 @@ const createFilters = (publications) => {
 
 // Change state of buttons. Click on All Publications resets filters.
 const toggleButtons = (filterButton, buttonsArray, list) => {
-	// Kinds of buttons
 	const isAll = filterButton.id === "all-publications";
 	const isType = filterButton.classList.contains("types");
 	const isCategory = filterButton.classList.contains("categories");
@@ -92,7 +89,6 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 	const toggleClass = (el, cls) => el.classList.toggle(cls);
 	const hasClass = (el, cls) => el.classList.contains(cls);
 
-	// Handle 'All Publications' button click
 	if (isAll) {
 		buttonsArray.forEach(e => {
 			e.classList.remove("active");
@@ -103,18 +99,16 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 		filterButton.classList.add("active");
 
 		// Show all items (clear filter)
-		list.filter(); // no callback = show all
+		list.filter();
 		return;
 	}
 
-	// Deselect "all-publications" when any other button is clicked
 	buttonsArray.forEach(e => {
 		if (e.id === "all-publications") {
 			e.classList.remove("active");
 		}
 	});
 
-	// Handle Type buttons
 	if (isType) {
 		buttonsArray.forEach(e => {
 			if (e.classList.contains("types")) {
@@ -132,7 +126,6 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 		});
 	}
 
-	// Handle Category buttons (toggle active)
 	if (isCategory) {
 		toggleClass(filterButton, "active");
 
@@ -147,7 +140,6 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 		});
 	}
 
-	// Handle Area buttons (toggle active)
 	if (isArea) {
 		toggleClass(filterButton, "active");
 	}
@@ -156,9 +148,8 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 
 // Filter list based on active buttons
 const filterList = (buttonsArray, list) => {
-	// Get active buttons
 	const activeType = buttonsArray.find(e => e.classList.contains("types") && e.classList.contains("active"));
-	const activeTypeText = activeType ? activeType.innerHTML.trim() : null;
+	const activeTypeText = activeType ? activeType.innerHTML.trim().slice(0, -1) : null;
 
 	const activeCategories =
 		buttonsArray
@@ -170,7 +161,6 @@ const filterList = (buttonsArray, list) => {
 			.filter(e => e.classList.contains("areas") && e.classList.contains("active"))
 			.map(e => e.innerHTML.trim());
 
-	// Filter items that match active buttons type, category or area
 	list.filter(item => {
 		const values = item.values();
 
@@ -192,15 +182,12 @@ const filterList = (buttonsArray, list) => {
 
 // Fetch publications, create list and masonry.
 document.addEventListener("DOMContentLoaded", async () => {
-	// Fetch publications JSON
 	const publicationsJson = await fetchPublications();
 
 	createFilters(publicationsJson);
 
-	// Create List.js with JSON data.
 	const publicationsList = new List('publicationsContainer', options, publicationsJson);
 
-	// Create Masonry.js instance.
 	const masonry = new Masonry( '.publicationsContainer', {
 		itemSelector: '.publicationElement',
 		percentPosition: true
