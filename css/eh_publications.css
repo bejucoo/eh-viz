@@ -61,6 +61,7 @@ span.filterTitle {
 	height: 100%;
 	overflow: scroll;
 	background: #f7f7f7;
+	overflow: hidden;
 }
 
 .publicationElement {

@@ -299,6 +299,52 @@
 				],
 				"type": "Point"
 			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Center for Global Environmental History",
+				"acronym": "",
+				"id": "cgeh_china",
+				"category": "institution",
+				"website": "github.com/ICEHO/eh-viz/raw/refs/heads/main/resources/docs/centerWorldEnvironmentalHistory_Beijing.docx",
+				"basicInfo": "",
+				"moreInfo": "",
+				"countries": "China",
+				"city": "Peking University, Beijing",
+				"area": "Asia",
+				"color": "#f1680f"
+			},
+			"geometry": {
+				"coordinates": [
+					116.305810,
+					39.986559
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Bogotá",
+				"acronym": "",
+				"id": "hub_bogota",
+				"category": "hub",
+				"website": "",
+				"basicInfo": "",
+				"moreInfo": "",
+				"countries": "Colombia",
+				"city": "Bogotá",
+				"area": "Latin America",
+				"color": "#34ae80"
+			},
+			"geometry": {
+				"coordinates": [
+					-74.065427,
+					4.602748
+				],
+				"type": "Point"
+			}
 		}
 	]
 }

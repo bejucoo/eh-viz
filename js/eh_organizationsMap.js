@@ -10,7 +10,8 @@ const ehMap = new mapboxgl.Map({
 	style: "mapbox://styles/bejuco/cm9bldki9001a01s34n1hbpig",
 	center: [0, 0],
 	zoom: isMobile ? 0 : 1.24,
-	projection: "equalEarth"
+	projection: "equalEarth",
+	interactive: false
 });
 
 
@@ -173,7 +174,7 @@ const addSidebarList = (layer) => {
 
 		p.innerHTML = layer === "institutions"
 			? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city}, ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
-			: `<a href="#" class="listNameLink">${e.name} ${e.acronym ? `(${e.acronym})`: ""}</a>`;
+			: `<a href="#" class="listNameLink"><b>${e.name}</b> ${e.acronym ? `<br>(${e.acronym})`: ""}</a>`;
 
 		const link = p.querySelector(".listNameLink");
 
@@ -204,8 +205,20 @@ const addSidebarList = (layer) => {
 	}
 
 	let areaGroups = {};
-	const nationalAreasOrder = ["North America", "Latin America", "Europe", "Oceania"];
-	const institutionsAreasOrder = ["North America", "Europe", "Oceania", "Asia"];
+	const nationalAreasOrder = [
+		"North America",
+		"Latin America",
+		"Europe",
+		"Oceania"
+	];
+
+	const institutionsAreasOrder = [
+		"Asia",
+		"Oceania",
+		"Latin America",
+		"North America",
+		"Europe"
+	];
 
 	layersInfo[layer].forEach(e => {
 		const area = e.area || "Unknown area";
@@ -236,7 +249,7 @@ let sidebarVisible = false;
 const toggleSidebarOn = async (layer) => {
 	const listTitle = layer === "national"
 	? "National Associations of Environmental History:"
-	: "Institutions of Environmental History:";
+	: "Institutions and Hubs of Environmental History:";
 
 	if (!sidebarVisible) {
 		document.getElementById("mapContainer").classList.add("hasSidebar");
