@@ -16,7 +16,7 @@ const ehMap = new mapboxgl.Map({
 
 const fetchAssociations = async () => {
 	try {
-		const response = await fetch("./data/eh_organizationsMap_associations.json");
+		const response = await fetch("./data/eh_organizations_associations.json");
 		return await response.json();
 	} catch (error) {
 		console.error("Error fetching associations data:", error);
@@ -101,12 +101,12 @@ ehMap.on("load", async () => {
 
 	ehMap.addSource("associationsLabels", {
 		type: "geojson",
-		data: "./data/eh_organizationsMap_associationsLabels.geojson"
+		data: "./data/eh_organizations_associationsLabels.geojson"
 	});
 
 	ehMap.addSource("institutions", {
 		type: "geojson",
-		data: "./data/eh_organizationsMap_institutions.geojson"
+		data: "./data/eh_organizations_institutions.geojson"
 	});
 
 	const associations = await fetchAssociations();
