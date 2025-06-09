@@ -4,7 +4,6 @@ const isMobile = window.innerWidth < 768;
 mapboxgl.accessToken = "pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg";
 
 
-// Create map.
 const ehMap = new mapboxgl.Map({
 	container: "map",
 	style: "mapbox://styles/bejuco/cm9bldki9001a01s34n1hbpig",
@@ -15,7 +14,6 @@ const ehMap = new mapboxgl.Map({
 });
 
 
-// Get associations data.
 const fetchAssociations = async () => {
 	try {
 		const response = await fetch("./data/eh_organizationsMap_associations.json");
@@ -26,10 +24,13 @@ const fetchAssociations = async () => {
 };
 
 
-// Arrays for layers IDs.
-const layersId = {major: [], national: [], clickable: []};
+const layersId = {
+	major: [],
+	national: [],
+	clickable: []
+};
 
-// Aassociations layers.
+
 const addAssociations = (data) => {
 	data.forEach(({id, color, countriesPolygons, ...metadata}) => {
 		const isMajor = metadata.category === "major";
@@ -39,7 +40,7 @@ const addAssociations = (data) => {
 			id,
 			type: "fill",
 			source: "worldMap",
-			layout: { visibility },
+			layout: {visibility},
 			paint: {
 				"fill-color": color,
 				"fill-opacity": 0.5
@@ -56,7 +57,7 @@ const addAssociations = (data) => {
 	});
 };
 
-// Association titles layer.
+
 const addMajorAssociationsLabels = () => {
 	ehMap.addLayer({
 		id: "majorAssociationsLabels",
@@ -72,13 +73,13 @@ const addMajorAssociationsLabels = () => {
 	});
 };
 
-// Institutions layer.
+
 const addInstitutions = () => {
 	ehMap.addLayer({
 		id: "institutionsPoints",
 		type: "circle",
 		source: "institutions",
-		layout: { visibility: "none" },
+		layout: {visibility: "none"},
 		paint: {
 			"circle-radius": 4,
 			"circle-color": ["get", "color"],
@@ -92,7 +93,6 @@ const addInstitutions = () => {
 };
 
 
-// Load sources and add layers.
 ehMap.on("load", async () => {
 	ehMap.addSource("worldMap", {
 		type: "geojson",
@@ -117,8 +117,6 @@ ehMap.on("load", async () => {
 });
 
 
-
-// Add sidebar information.
 let nationalInfoSaved = false;
 let institutionsInfoSaved = false;
 let layersInfo = {national: [],	institutions: []};
@@ -149,7 +147,7 @@ const loadSidebarData = async (layer) => {
 
 		const features = ehMap.querySourceFeatures('institutions', {sourceLayer: 'institutionsPoints'});
 		const featuresNames = features.map(e => e.properties.name)
-		const filteredFeatures = features.filter(({ properties }, index) =>	!featuresNames.includes(properties?.name, index + 1));
+		const filteredFeatures = features.filter(({properties}, index) =>	!featuresNames.includes(properties?.name, index + 1));
 
 		filteredFeatures.forEach((e, i) => {
 			layersInfo.institutions.push(e.properties);
@@ -173,7 +171,7 @@ const addSidebarList = (layer) => {
 		const listElementSpacer = document.createElement("br");
 
 		p.innerHTML = layer === "institutions"
-			? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city}, ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
+			? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city ? `${e.city},` : ""} ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
 			: `<a href="#" class="listNameLink"><b>${e.name}</b> ${e.acronym ? `<br>(${e.acronym})`: ""}</a>`;
 
 		const link = p.querySelector(".listNameLink");
@@ -239,12 +237,12 @@ const addSidebarList = (layer) => {
 	}
 }
 
-// Remove sidebar list elements.
+
 const removeSidebarList = (layer) => {
 	listElement.innerHTML = "";
 }
 
-// Toggle sidebar.
+
 let sidebarVisible = false;
 const toggleSidebarOn = async (layer) => {
 	const listTitle = layer === "national"
@@ -270,6 +268,7 @@ const toggleSidebarOn = async (layer) => {
 
 	ehMap.resize();
 }
+
 
 const toggleSidebarOff = () => {
 	if (sidebarVisible) {
@@ -297,7 +296,7 @@ ehMap.on("click", layersId.clickable, (e) => {
 		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
 		<p>${metadata.basicInfo}</p>
 		${metadata.basicInfo && `<br>`}
-		${metadata.city ? `<h3>${metadata.city + ", " + metadata.countries}</h3>` : ""}
+		${metadata.city ? `<h3>${metadata.city}, ${metadata.countries}</h3>` : ""}
 		${metadata.website ? `<p><b>Website: <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></b></p>` : ""}
 	`;
 
@@ -373,7 +372,7 @@ document.querySelectorAll(".layerToggle").forEach((button, index, buttonsArray) 
 });
 
 
-// Change cursor on hover.
+// Change cursor on hover and out.
 const togglePointer = (cursorType) => () => {
 	ehMap.getCanvas().style.cursor = cursorType;
 };
