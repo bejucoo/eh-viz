@@ -171,7 +171,7 @@ const addSidebarList = (layer) => {
 		const listElementSpacer = document.createElement("br");
 
 		p.innerHTML = layer === "institutions"
-			? `<a href="#" class="listNameLink"><b>${e.name}</b> - ${e.city ? `${e.city},` : ""} ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
+			? `<a href="#" class="listNameLink"><b>${e.category === "hub" ? `${e.name} (Hub)` : `${e.name}`}</b> - ${e.city ? `${e.city},` : ""} ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
 			: `<a href="#" class="listNameLink"><b>${e.name}</b> ${e.acronym ? `<br>(${e.acronym})`: ""}</a>`;
 
 		const link = p.querySelector(".listNameLink");
@@ -292,7 +292,7 @@ ehMap.on("click", layersId.clickable, (e) => {
 	const isNational = metadata.category === "national";
 
 	const popupInfo = `
-		${isNational || isInstitution ? `<h2>${metadata.name}</h2>` : ""}
+		${isNational || isInstitution ? `<h2>${metadata.category === "hub" ? `${metadata.name} (Hub)` : `${metadata.name}`}</h2>` : ""}
 		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
 		<p>${metadata.basicInfo}</p>
 		${metadata.basicInfo && `<br>`}
