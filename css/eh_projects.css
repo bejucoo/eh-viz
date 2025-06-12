@@ -64,12 +64,12 @@ html, body {
 /* TABLE AND MOBILE */
 @media only screen and (max-width: 1024px) {
 	#projectsContainer {
-		padding: 3vh;
+		padding: 15px;
 	}
 
 	.list {
 		grid-template-columns: 1fr;
-		grid-gap: 5vh;
+		grid-gap: 30px;
 	}
 
 	.projectElement {
