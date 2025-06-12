@@ -1,3 +1,35 @@
+// Fetch publications, create list and masonry.
+document.addEventListener("DOMContentLoaded", async () => {
+	const publicationsJson = await fetchPublications();
+
+	createFilters(publicationsJson);
+
+	const publicationsList = new List('publicationsContainer', listOptions, publicationsJson);
+
+	const masonry = new Masonry( '.publicationsContainer', {
+		itemSelector: '.publicationElement',
+		percentPosition: true
+	});
+
+	// Re-order masonry when images are loaded.
+	imagesLoaded(document.querySelector('.publicationsContainer'), function() {
+		masonry.layout();
+	});
+
+	const buttonsNodeList = document.querySelectorAll(".filterToggle");
+	const buttonsArray = Array.from(buttonsNodeList);
+
+	buttonsArray.forEach((button) => {
+		button.addEventListener("click", () => {
+			toggleButtons(button, buttonsArray, publicationsList);
+			filterList(buttonsArray, publicationsList);
+			masonry.reloadItems();
+			masonry.layout();
+		});
+	});
+});
+
+
 // Fetch publications JSON.
 const fetchPublications = async () => {
 	try {
@@ -10,8 +42,8 @@ const fetchPublications = async () => {
 
 
 // List.js options and publication HTML element to render.
-const options = {
-	valueNames: ['name', 'type', 'imageLink'],
+const listOptions = {
+	valueNames: ["name", "type", "website"],
 	percentPosition: true,
 	item: (values) => {
 		return `
@@ -60,7 +92,7 @@ const createFilters = (publications) => {
 		if (filters.hasOwnProperty(key)) {
 			filters[key].forEach(e => {
 				const filterButton = document.createElement('button');
-				filterButton.id = e.toLowerCase().replaceAll(' ', '-');;
+				filterButton.id = e.toLowerCase().replaceAll(' ', '-');
 				filterButton.classList.add("filterToggle");
 				filterButton.classList.add(key);
 				filterButton.innerText = key === "types" ? `${e}s` : e;
@@ -177,36 +209,3 @@ const filterList = (buttonsArray, list) => {
 		return matchesType && matchesCategory && matchesArea;
 	});
 }
-
-
-
-// Fetch publications, create list and masonry.
-document.addEventListener("DOMContentLoaded", async () => {
-	const publicationsJson = await fetchPublications();
-
-	createFilters(publicationsJson);
-
-	const publicationsList = new List('publicationsContainer', options, publicationsJson);
-
-	const masonry = new Masonry( '.publicationsContainer', {
-		itemSelector: '.publicationElement',
-		percentPosition: true
-	});
-
-	// Re-order masonry when images are loaded.
-	imagesLoaded(document.querySelector('.publicationsContainer'), function() {
-		masonry.layout();
-	});
-
-	const buttonsNodeList = document.querySelectorAll(".filterToggle");
-	const buttonsArray = Array.from(buttonsNodeList);
-
-	buttonsArray.forEach((button) => {
-		button.addEventListener("click", () => {
-			toggleButtons(button, buttonsArray, publicationsList);
-			filterList(buttonsArray, publicationsList);
-			masonry.reloadItems();
-			masonry.layout();
-		});
-	});
-});

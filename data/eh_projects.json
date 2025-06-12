@@ -1,11 +1,56 @@
 [
 	{
 		"name": "Fragments of the Forest: Hot Zones, Disease Ecologies, and the Changing Landscape of Environment and Health in West Africa",
+		"id": "project_1",
 		"acronym": "",
-		"website": "https://fragmentsoftheforest.com",
+		"website": "fragmentsoftheforest.com",
 		"basicInfo": "",
-		"imageLink": "",
 		"years": "2021 - 2026",
 		"countries": ["USA", "Europe", "West Africa"]
+	},
+	{
+		"name": "The Making of Monoculture: A Global History",
+		"id": "project_2",
+		"acronym": "",
+		"website": "www.understandingmonoculture.eu",
+		"basicInfo": "",
+		"years": "2021 - 2026",
+		"countries": ["Germany"]
+	},
+	{
+		"name": "Freezing Memory: Collecting in Tropical America between the 18th and 20th Centuries",
+		"id": "project_3",
+		"acronym": "",
+		"website": "",
+		"basicInfo": "",
+		"years": "2024 - 2026",
+		"countries": ["Ecuador", "Venezuela"]
+	},
+	{
+		"name": "Handbook of Global Animal History",
+		"id": "project_4",
+		"acronym": "",
+		"website": "",
+		"basicInfo": "",
+		"years": "2023 - 2026",
+		"countries": ["USA"]
+	},
+	{
+		"name": "Chinese Environmental History",
+		"id": "project_5",
+		"acronym": "",
+		"website": "",
+		"basicInfo": "",
+		"years": "",
+		"countries": ["China"]
+	},
+	{
+		"name": "Antigone: Archaeology of shariNg pracTIces: the material evidence of mountain marGinalisatiON in Europe (18-21st c. AD.)",
+		"id": "project_6",
+		"acronym": "",
+		"website": "antigone-erc.eu/",
+		"basicInfo": "",
+		"years": "2020 - 2025",
+		"countries": ["Italy"]
 	}
 ]

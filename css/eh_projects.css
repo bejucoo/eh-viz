@@ -24,59 +24,31 @@ html, body {
 
 
 
-/* BUTTONS */
-#filterControls {
-	text-align: left;
-	width: 100%;
-	padding: 15px;
-	margin: auto;
-}
-
-span.filterTitle {
-	font-weight: bold;
-}
-
-.filterToggle {
-	margin: 5px;
-	padding: 10px 25px;
-	font-weight: bold;
-	border: 2px solid black;
-	background: #f7f7f7;
-	cursor: pointer;
-}
-
-.filterToggle.active {
-	color: #f7f7f7;
-	background: black;
-}
-
-.filterToggle:hover:not(.active) {
-	background: #d7d7d7
-}
-
-
-
 /* PUBLICATIONS */
-#publicationsContainer {
+#projectsContainer {
 	height: 100%;
-	overflow: scroll;
+	padding: 5vh;
 	background: #f7f7f7;
-	overflow: hidden;
 }
 
-.publicationElement {
-	width: 20%;
-	padding: 1vw;
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 5vh;
+}
+
+.projectElement {
 	margin-bottom: 10px;
 }
 
-.publicationElement > * {
+.projectElement > * {
 	display: inline-block;
 	margin: 0 0 10px 0;
 }
 
-.publicationImg {
+.projectImg {
 	width: 100%;
+	aspect-ratio: 1/1;
 	object-fit: cover;
 }
 
@@ -91,9 +63,17 @@ span.filterTitle {
 /* RESPONSIVE */
 /* TABLE AND MOBILE */
 @media only screen and (max-width: 1024px) {
-	.publicationElement {
+	#projectsContainer {
+		padding: 3vh;
+	}
+
+	.list {
+		grid-template-columns: 1fr;
+		grid-gap: 5vh;
+	}
+
+	.projectElement {
 		width: 100%;
-		padding: 5vw;
 	}
 }
 
@@ -134,7 +114,7 @@ h1, h2, h3, h4, button, a, p, span {
 
 a:link {
 	transition: color .2s linear;
-	color: #000;
+	color: #51C2C8;
 	text-decoration: none;
 }
 
@@ -145,4 +125,11 @@ a:visited {
 
 a:hover {
 	text-decoration: underline;
+}
+
+a.projectWebsiteLink {
+	background-image: url(../resources/icons/external.svg);
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding-right: 1em;
 }
