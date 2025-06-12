@@ -171,8 +171,42 @@ const addSidebarList = (layer) => {
 		const listElementSpacer = document.createElement("br");
 
 		p.innerHTML = layer === "institutions"
-			? `<a href="#" class="listNameLink"><b>${e.category === "hub" ? `${e.name} (Hub)` : `${e.name}`}</b> - ${e.city ? `${e.city},` : ""} ${e.countries}${e.website ? `<br><b><a class="listWebsiteLink" href="http://${e.website}" target="_blank" rel="noopener noreferrer">Website</a></b>` : ""}`
-			: `<a href="#" class="listNameLink"><b>${e.name}</b> ${e.acronym ? `<br>(${e.acronym})`: ""}</a>`;
+			?
+				`<a href="#" class="listNameLink">
+					<b>
+						${e.category === "hub"
+							? `${e.name} (Hub)`
+							: `${e.name}`
+						}
+					</b> -
+					${e.city
+						? `${e.city},`
+						: ""
+					}
+					${e.countries}
+				</a>
+				${e.website
+					? `<br>
+						<b>
+							<a class="listWebsiteLink" href="http://${e.website}"
+								${e.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+									${e.website.endsWith(".docx")
+										? "Information"
+										: "Website"
+									}
+							</a>
+						</b>`
+					: ""
+				}
+				`
+			:
+				`<a href="#" class="listNameLink">
+					<b>${e.name}</b>
+					${e.acronym
+						? `<br>(${e.acronym})`
+						: ""
+					}
+				</a>`;
 
 		const link = p.querySelector(".listNameLink");
 
@@ -184,8 +218,26 @@ const addSidebarList = (layer) => {
 				<h2>${e.name}</h2>
 				<p>${e.basicInfo}</p>
 				${e.basicInfo && `<br>`}
-				${e.city ? `<h3>${e.city + ", " + e.countries}</h3>` : ""}
-				${e.website ? `<p><b>Website: <a href="http://${e.website}" target="_blank" rel="noopener noreferrer">${e.website}</a></b></p>` : ""}
+				${e.city
+					? `<h3>${e.city + ", " + e.countries}</h3>`
+					: ""
+				}
+				${e.website
+					? `<p>
+						<b>
+							${e.website.endsWith(".docx")
+								? "Information"
+								: "Website"
+							}: <a href="http://${e.website}" ${e.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+									${e.website.endsWith(".docx")
+										? "Download document"
+										: e.website
+									}
+								</a>
+						</b>
+					</p>`
+					: ""
+				}
 			`;
 
 			new mapboxgl.Popup({
@@ -292,12 +344,44 @@ ehMap.on("click", layersId.clickable, (e) => {
 	const isNational = metadata.category === "national";
 
 	const popupInfo = `
-		${isNational || isInstitution ? `<h2>${metadata.category === "hub" ? `${metadata.name} (Hub)` : `${metadata.name}`}</h2>` : ""}
-		${isNational ? `<h3>${metadata.acronym}</h3>` : ""}
+		${isNational || isInstitution
+			? `<h2>
+				${metadata.category === "hub"
+					? `${metadata.name} (Hub)`
+					: `${metadata.name}`}
+				</h2>`
+			: ""
+		}
+		${isNational
+			? `<h3>
+				${metadata.acronym}
+				</h3>`
+			: ""
+		}
 		<p>${metadata.basicInfo}</p>
 		${metadata.basicInfo && `<br>`}
-		${metadata.city ? `<h3>${metadata.city}, ${metadata.countries}</h3>` : ""}
-		${metadata.website ? `<p><b>Website: <a href="http://${metadata.website}" target="_blank" rel="noopener noreferrer">${metadata.website}</a></b></p>` : ""}
+		${metadata.city
+			? `<h3>
+				${metadata.city}, ${metadata.countries}
+				</h3>`
+				: ""
+		}
+		${metadata.website
+			? `<p>
+				<b>
+					${metadata.website.endsWith(".docx")
+						? "Information"
+						: "Website"
+					}: <a href="http://${metadata.website}" ${metadata.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+							${metadata.website.endsWith(".docx")
+								? "Download document"
+								: metadata.website
+							}
+						</a>
+				</b>
+			</p>`
+			: ""
+		}
 	`;
 
 	new mapboxgl.Popup({

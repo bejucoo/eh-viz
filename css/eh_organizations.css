@@ -152,6 +152,9 @@ p {
 	margin-bottom: 0;
 }
 
+a {
+	outline: none;
+}
 
 a:link {
 	transition: color .2s linear;

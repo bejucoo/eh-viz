@@ -130,6 +130,9 @@ h1, h2, h3, h4, button, a, p, span {
 	font-family: "Libre Franklin";
 }
 
+a {
+	outline: none;
+}
 
 a:link {
 	transition: color .2s linear;
