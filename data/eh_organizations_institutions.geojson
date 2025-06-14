@@ -326,6 +326,29 @@
 		{
 			"type": "Feature",
 			"properties": {
+				"name": "The African Anthropocenes Research Centre",
+				"acronym": "",
+				"id": "african_rc",
+				"category": "institution",
+				"website": "github.com/ICEHO/eh-viz/raw/refs/heads/main/resources/docs/eh_organizations_africanAnthropocenesResearchCentre.docx",
+				"basicInfo": "",
+				"moreInfo": "",
+				"countries": "South Africa",
+				"city": "History Department, Stellenbosch University, Stellenbosch",
+				"area": "Africa",
+				"color": "#45b0ff"
+			},
+			"geometry": {
+				"coordinates": [
+					18.864318,
+					-33.933182
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
 				"name": "Bogotá",
 				"acronym": "",
 				"id": "hub_bogota",

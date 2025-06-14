@@ -265,6 +265,7 @@ const addSidebarList = (layer) => {
 	const institutionsAreasOrder = [
 		"Asia",
 		"Oceania",
+		"Africa",
 		"Latin America",
 		"North America",
 		"Europe"
