@@ -47,8 +47,8 @@ const listOptions = {
 					?
 						`<h3 class="projectWebsite">
 							<a class="projectWebsiteLink"
-								href="http://${values.website}"
-								${values.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+								href="https://${values.website}"
+								${values.website.endsWith(".docx") ? 'target="_blank" rel="noreferrer" download' : 'target="_blank" rel="noreferrer"'}>
 									${values.website.endsWith(".docx")
 										? "Information"
 										: "Website"

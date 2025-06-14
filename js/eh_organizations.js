@@ -188,8 +188,8 @@ const addSidebarList = (layer) => {
 				${e.website
 					? `<br>
 						<b>
-							<a class="listWebsiteLink" href="http://${e.website}"
-								${e.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+							<a class="listWebsiteLink" href="https://${e.website}"
+								${e.website.endsWith(".docx") ? 'target="_blank" rel="noreferrer" download' : 'target="_blank" rel="noreferrer"'}>
 									${e.website.endsWith(".docx")
 										? "Information"
 										: "Website"
@@ -228,7 +228,7 @@ const addSidebarList = (layer) => {
 							${e.website.endsWith(".docx")
 								? "Information"
 								: "Website"
-							}: <a href="http://${e.website}" ${e.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+							}: <a href="https://${e.website}" ${e.website.endsWith(".docx") ? 'target="_blank" rel="noreferrer" download' : 'target="_blank" rel="noreferrer"'}>
 									${e.website.endsWith(".docx")
 										? "Download document"
 										: e.website
@@ -372,7 +372,7 @@ ehMap.on("click", layersId.clickable, (e) => {
 					${metadata.website.endsWith(".docx")
 						? "Information"
 						: "Website"
-					}: <a href="http://${metadata.website}" ${metadata.website.endsWith(".docx") ? "download" : "target='_blank' rel='noreferrer'"}>
+					}: <a href="https://${metadata.website}" ${metadata.website.endsWith(".docx") ? 'target="_blank" rel="noreferrer" download' : 'target="_blank" rel="noreferrer"'}>
 							${metadata.website.endsWith(".docx")
 								? "Download document"
 								: metadata.website
