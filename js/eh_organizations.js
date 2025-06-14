@@ -96,10 +96,8 @@ const addInstitutions = () => {
 ehMap.on("load", async () => {
 	const layersButtons = document.querySelectorAll('.layerToggle');
 	layersButtons.forEach(button => button.disabled = true);
-	console.log("desactivados");
 
 	const onFirstIdle = () => {
-		console.log("activados");
 		layersButtons.forEach(button => button.disabled = false);
 		ehMap.off('idle', onFirstIdle);
 	};
