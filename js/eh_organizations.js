@@ -94,6 +94,18 @@ const addInstitutions = () => {
 
 
 ehMap.on("load", async () => {
+	const layersButtons = document.querySelectorAll('.layerToggle');
+	layersButtons.forEach(button => button.disabled = true);
+	console.log("desactivados");
+
+	const onFirstIdle = () => {
+		console.log("activados");
+		layersButtons.forEach(button => button.disabled = false);
+		ehMap.off('idle', onFirstIdle);
+	};
+
+	ehMap.on('idle', onFirstIdle);
+
 	ehMap.addSource("worldMap", {
 		type: "geojson",
 		data: "./resources/worldMap/worldMapMQ.geojson"
@@ -137,6 +149,7 @@ const waitSourceLoad = (sourceId) => {
 // Load data to layersInfo array.
 const loadSidebarData = async (layer) => {
 	if (layer === "national" && !nationalInfoSaved && layersInfo.national.length === 0) {
+		await waitSourceLoad("associationsLabels");
 		layersId.national.forEach(e => {
 			layersInfo.national.push(ehMap.getLayer(e).metadata);
 		});
