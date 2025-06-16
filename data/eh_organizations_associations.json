@@ -174,5 +174,20 @@
 		"area": "Oceania",
 		"color": "#FFF200",
 		"coordinates": [141.4, -27.6]
+	},
+	{
+		"name": "The Environmental History Professional Committee of the Chinese Society for Environmental Sciences",
+		"acronym": "",
+		"id": "ehpccses",
+		"category": "national",
+		"website": "ehc.muc.edu.cn/",
+		"basicInfo": "",
+		"countries": "China",
+		"countriesPolygons": [
+			"CHN"
+		],
+		"area": "Asia",
+		"color": "#EE1C25",
+		"coordinates": [101.0, 33.3]
 	}
 ]

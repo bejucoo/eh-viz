@@ -48,6 +48,12 @@ html, body {
 	background: #d7d7d7;
 }
 
+.layerToggle:disabled {
+	pointer-events: none;
+	opacity: 0.5;
+	cursor: auto;
+}
+
 
 /* MAP & LIST */
 #mapContainer {

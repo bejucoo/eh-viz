@@ -43,17 +43,21 @@ const fetchPublications = async () => {
 
 // List.js options and publication HTML element to render.
 const listOptions = {
-	valueNames: ["name", "type", "website"],
+	valueNames: ["name", "type", "website", "publisher", "imageName"],
 	percentPosition: true,
 	item: (values) => {
 		return `
 			<div class="publicationElement">
 				<a href="${values.website}" target="_blank" rel="noreferrer">
-					<img src="./resources/images/publications/${values.name}.webp" alt="${values.name} image" class="publicationImg">
+					<img src="./resources/images/publications/${values.imageName}" alt="${values.name} image" class="publicationImg">
 				</a>
 				<h2 class="publicationName">
 					<a href="${values.website}" target="_blank" rel="noreferrer">${values.name}</a>
 				</h2>
+				${values.publisher !== ""
+					? `<br><h4 class="publicationPublisher">${values.publisher}</h4>`
+					: ""
+				}
 			</div>
 		`;
     }
@@ -95,7 +99,7 @@ const createFilters = (publications) => {
 				filterButton.id = e.toLowerCase().replaceAll(' ', '-');
 				filterButton.classList.add("filterToggle");
 				filterButton.classList.add(key);
-				filterButton.innerText = key === "types" ? `${e}s` : e;
+				filterButton.innerText = e;
 
 				key !== "types" && filterButton.classList.add("isHidden");
 
@@ -181,7 +185,7 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 // Filter list based on active buttons
 const filterList = (buttonsArray, list) => {
 	const activeType = buttonsArray.find(e => e.classList.contains("types") && e.classList.contains("active"));
-	const activeTypeText = activeType ? activeType.innerHTML.trim().slice(0, -1) : null;
+	const activeTypeText = activeType ? activeType.innerHTML.trim() : null;
 
 	const activeCategories =
 		buttonsArray

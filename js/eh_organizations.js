@@ -270,7 +270,8 @@ const addSidebarList = (layer) => {
 		"North America",
 		"Latin America",
 		"Europe",
-		"Oceania"
+		"Oceania",
+		"Asia"
 	];
 
 	const institutionsAreasOrder = [
@@ -310,7 +311,7 @@ const removeSidebarList = (layer) => {
 let sidebarVisible = false;
 const toggleSidebarOn = async (layer) => {
 	const listTitle = layer === "national"
-	? "National Associations of Environmental History:"
+	? "National Associations and Networks of Environmental History:"
 	: "Institutions and Hubs of Environmental History:";
 
 	if (!sidebarVisible) {

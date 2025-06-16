@@ -36,10 +36,10 @@
 		"countries": ["USA"]
 	},
 	{
-		"name": "Volume on Chinese Environmental History for the new edition of a General History of China",
+		"name": "The Multi-Volume History of China’s Eco-Environmental Evolution",
 		"id": "project_5",
 		"acronym": "",
-		"website": "github.com/ICEHO/eh-viz/raw/refs/heads/main/resources/docs/eh_projects_chineseEnvironmentalHistory.docx",
+		"website": "github.com/ICEHO/eh-viz/raw/refs/heads/main/resources/docs/eh_projects_multiVolumeHistoryChina",
 		"basicInfo": "",
 		"years": "",
 		"countries": ["China"]
