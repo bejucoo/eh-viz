@@ -47,7 +47,7 @@ const addAssociations = (data) => {
 			},
 			filter: [
 				"any",
-				...countriesPolygons.map(country => ["==", "adm0_a3", country])
+				...countriesPolygons.map(country => ["==", "feature_id", country])
 			],
 			metadata
 		});
@@ -106,7 +106,7 @@ ehMap.on("load", async () => {
 
 	ehMap.addSource("worldMap", {
 		type: "geojson",
-		data: "./resources/worldMap/worldMapMQ.geojson"
+		data: "./resources/worldMap/worldMapLQ.geojson"
 	});
 
 	ehMap.addSource("associationsLabels", {
