@@ -379,11 +379,11 @@
 			"type": "Feature",
 			"properties": {
 				"name": "Centre for World Environmental History",
-				"acronym": "cweh",
-				"id": "",
+				"acronym": "",
+				"id": "cweh",
 				"category": "institution",
 				"website": "www.sussex.ac.uk/cweh/index",
-				"basicInfo": "The Centre for World Environmental History (CWEH) was launched in May 2002 under the aegis of the School of African and Asian Studies at the University of Sussex. It was funded for an initial three year period by the Research and Development Fund of the University. CWEH has now raised funds from the Leverhulme Trust, the AHRC and the British Academy for independent projects.",
+				"basicInfo": "",
 				"countries": "UK",
 				"city": "University of Sussex, Falmer",
 				"area": "Europe",
@@ -393,6 +393,28 @@
 				"coordinates": [
 					-0.087677,
 					50.867986
+				],
+				"type": "Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "The Greenhouse",
+				"acronym": "",
+				"id": "greenhouse",
+				"category": "institution",
+				"website": "www.uis.no/en/greenhouse",
+				"basicInfo": "",
+				"countries": "Norway",
+				"city": "University of Stavanger, Stavanger",
+				"area": "Europe",
+				"color": "#6F07E8"
+			},
+			"geometry": {
+				"coordinates": [
+					5.696068,
+					58.936797
 				],
 				"type": "Point"
 			}
