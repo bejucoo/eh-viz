@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 			masonry.reloadItems();
 			masonry.layout();
 		});
+
+		button.id === "journals" && button.click();
 	});
 });
 
@@ -116,7 +118,7 @@ const createFilters = (publications) => {
 
 // Change state of buttons. Click on All Publications resets filters.
 const toggleButtons = (filterButton, buttonsArray, list) => {
-	const isAll = filterButton.id === "all-publications";
+	//const isAll = filterButton.id === "all-publications";
 	const isType = filterButton.classList.contains("types");
 	const isCategory = filterButton.classList.contains("categories");
 	const isArea = filterButton.classList.contains("areas");
@@ -125,7 +127,7 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 	const toggleClass = (el, cls) => el.classList.toggle(cls);
 	const hasClass = (el, cls) => el.classList.contains(cls);
 
-	if (isAll) {
+	/*if (isAll) {
 		buttonsArray.forEach(e => {
 			e.classList.remove("active");
 			if (e.classList.contains("categories") || e.classList.contains("areas")) {
@@ -137,13 +139,13 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 		// Show all items (clear filter)
 		list.filter();
 		return;
-	}
+	}*/
 
-	buttonsArray.forEach(e => {
+	/*buttonsArray.forEach(e => {
 		if (e.id === "all-publications") {
 			e.classList.remove("active");
 		}
-	});
+	});*/
 
 	if (isType) {
 		buttonsArray.forEach(e => {
