@@ -124,28 +124,8 @@ const toggleButtons = (filterButton, buttonsArray, list) => {
 	const isArea = filterButton.classList.contains("areas");
 
 	// Functions to toggle or detect class in element
-	const toggleClass = (el, cls) => el.classList.toggle(cls);
-	const hasClass = (el, cls) => el.classList.contains(cls);
-
-	/*if (isAll) {
-		buttonsArray.forEach(e => {
-			e.classList.remove("active");
-			if (e.classList.contains("categories") || e.classList.contains("areas")) {
-				e.classList.add("isHidden");
-			}
-		});
-		filterButton.classList.add("active");
-
-		// Show all items (clear filter)
-		list.filter();
-		return;
-	}*/
-
-	/*buttonsArray.forEach(e => {
-		if (e.id === "all-publications") {
-			e.classList.remove("active");
-		}
-	});*/
+	const toggleClass = (elm, cls) => elm.classList.toggle(cls);
+	const hasClass = (elm, cls) => elm.classList.contains(cls);
 
 	if (isType) {
 		buttonsArray.forEach(e => {
