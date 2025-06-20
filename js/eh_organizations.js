@@ -1,12 +1,13 @@
 const isMobile = window.innerWidth < 768;
 
-// Mapbox Token, please change to go live.
-mapboxgl.accessToken = "pk.eyJ1IjoiYmVqdWNvIiwiYSI6ImNsZGFzMWozODA4M3MzcHBlazJuNmt0MHQifQ.iY3O20QiikO_kLcJZ2i9tg";
+// Mapbox Token
+// Please refer to https://docs.mapbox.com/help/getting-started/access-tokens/#how-access-tokens-work for more info.
+mapboxgl.accessToken = "pk.eyJ1IjoiaWNlaG8iLCJhIjoiY21jNHVlMXBsMGF5cTJpc2E2MmppMGU0ZSJ9.uq_ZW3D-ALjypCFuWE8VyA";
 
 
 const ehMap = new mapboxgl.Map({
 	container: "map",
-	style: "mapbox://styles/bejuco/cm9bldki9001a01s34n1hbpig",
+	style: "mapbox://styles/iceho/cmc4tz4xa021q01s595ko8yuf",
 	center: [0, 0],
 	zoom: isMobile ? 0 : 1.24,
 	projection: "equalEarth",
