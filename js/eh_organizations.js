@@ -11,7 +11,7 @@ const ehMap = new mapboxgl.Map({
 	center: [0, 0],
 	zoom: isMobile ? 0 : 1.24,
 	projection: "equalEarth",
-	interactive: false
+	interactive: true
 });
 
 
